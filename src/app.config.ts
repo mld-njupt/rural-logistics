@@ -1,14 +1,15 @@
 export default {
-  pages: ["pages/index/index", "pages/Send/Send", "pages/Recruit/Recruit"],
+  pages: ["pages/Recruit/Recruit", "pages/index/index", "pages/Send/Send"],
   window: {
     backgroundTextStyle: "light",
     navigationBarBackgroundColor: "#fff",
     navigationBarTitleText: "WeChat",
     navigationBarTextStyle: "black",
+    navigationStyle: "custom",
   },
   tabBar: {
     color: "#8a8a8a",
-    selectedColor: "#1296db",
+    selectedColor: "#12d4db",
     list: [
       {
         pagePath: "pages/index/index",

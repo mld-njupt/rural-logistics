@@ -1,0 +1,33 @@
+.tabs {
+  margin-top: 20px;
+  position: relative;
+  width: 750rpx;
+  .tablist {
+    width: 100%;
+    display: flex;
+    margin-left: 30rpx;
+    .tab-list-item {
+      font-size: 30px;
+      color: #12d4db;
+      //   width: 140rpx;
+      margin: 20rpx;
+      height: 30px;
+      line-height: 30px;
+      font-weight: bold;
+      text-align: center;
+      padding-bottom: 20px;
+      transition: all ease-in-out 0.2s;
+    }
+    .selected {
+      border-bottom: 5px solid #12d4db;
+
+      font-size: 36px;
+    }
+  }
+  .tabpanels {
+    // transform: translateY(40px);
+    position: absolute;
+    top: 100px;
+    width: 750rpx;
+  }
+}
