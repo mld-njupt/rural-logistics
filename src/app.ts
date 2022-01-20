@@ -1,5 +1,6 @@
 /* eslint-disable import/first */
 import { Component } from "react";
+import { RecoilRoot } from "recoil";
 import "./app.scss";
 // import "taro-ui/dist/style/index.scss";
 

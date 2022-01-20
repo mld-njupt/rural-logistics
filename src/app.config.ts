@@ -1,5 +1,10 @@
 export default {
-  pages: ["pages/Recruit/Recruit", "pages/index/index", "pages/Send/Send"],
+  pages: [
+    "pages/SendDetail/SendDetail",
+    "pages/Recruit/Recruit",
+    "pages/index/index",
+    "pages/Send/Send",
+  ],
   window: {
     backgroundTextStyle: "light",
     navigationBarBackgroundColor: "#fff",

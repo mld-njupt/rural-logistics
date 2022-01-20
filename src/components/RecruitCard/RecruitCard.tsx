@@ -10,7 +10,7 @@ const RecruitCard = ({ title, address, salary, name, from }) => {
         <view className="card-item salary">{salary}/单</view>
       </view>
       <view className="card-line center">
-        <view className="card-item from">{from}</view>
+        <view className="card-item from">{from} | 本科 | 无需经验</view>
         <view className="card-item address">{address}</view>
       </view>
       <view className="card-line bottom">
