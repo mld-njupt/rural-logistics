@@ -1,0 +1,103 @@
+page {
+  width: 750rpx;
+  height: 100%;
+  background-color: #e3e9f1;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+}
+.peopleMsgDetailContainer {
+  width: 700rpx;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  .head {
+    display: flex;
+    font-weight: 600;
+    background-color: white;
+    border-radius: 15px;
+    margin-top: 20px;
+    padding: 20px 0;
+    .title {
+      font-size: 36px;
+      line-height: 80px;
+    }
+  }
+  .information {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    background-color: white;
+    border-radius: 15px;
+
+    .info-item {
+      display: flex;
+      padding: 30px 0;
+      color: #8a8a8a;
+      font-size: 32px;
+      border-bottom: 1px solid #d8d6d6;
+      height: 80px;
+
+      .item-label {
+        width: 140rpx;
+        // text-align: center;
+        margin-left: 40px;
+        line-height: 80px;
+      }
+      .item-content {
+        width: 300rpx;
+        height: 100%;
+        margin-left: 20rpx;
+        input {
+          width: 300px;
+          height: 100%;
+        }
+      }
+      .item-phone {
+        width: 500rpx;
+        display: flex;
+        .getTel {
+          button {
+            border: none;
+            width: 200rpx;
+            color: #12d4db;
+            font-size: 26px;
+            height: 100%;
+            line-height: 80px;
+          }
+        }
+      }
+    }
+    .address {
+      height: 160px;
+      .item-label {
+        height: 80px;
+        line-height: inherit;
+      }
+    }
+  }
+  .confirm {
+    // margin-top: -180px;
+    margin-top: 300rpx;
+    border-radius: 15px;
+    width: 700rpx;
+    color: white;
+    font-size: 46px;
+    text-align: center;
+    padding: 20px 0;
+    height: 65px;
+    line-height: 65px;
+    background: #00fff0; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to right,
+      #00fff0,
+      #0083fe
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to right,
+      #00fff0,
+      #0083fe
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+}

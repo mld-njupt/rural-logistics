@@ -1,9 +1,10 @@
 export default {
   pages: [
+    "pages/PeopleMsgDetail/PeopleMsgDetail",
     "pages/SendDetail/SendDetail",
     "pages/Recruit/Recruit",
     "pages/index/index",
-    "pages/Send/Send",
+    // "pages/Send/Send",
   ],
   window: {
     backgroundTextStyle: "light",
@@ -25,7 +26,7 @@ export default {
         selectedIconPath: "assets/collect_selected.png",
       },
       {
-        pagePath: "pages/Send/Send",
+        pagePath: "pages/SendDetail/SendDetail",
         text: "寄件",
         iconPath: "assets/send.png",
         selectedIconPath: "assets/send_selected.png",
