@@ -1,4 +1,6 @@
 /* eslint-disable jsx-quotes */
+import Taro from "@tarojs/taro";
+import { useState } from "react";
 import { Input, Button, ScrollView, Textarea } from "@tarojs/components";
 import Header from "../../components/Header/Header";
 import { send_people, collect_people } from "../../utils/base64";
@@ -9,9 +11,16 @@ const PeopleMsgDetail = () => {
   const getPhoneNumber = (e) => {
     console.log(e.detail.code);
   };
+  const [msgState, setMsgState] = useState(
+    Taro.getCurrentInstance().router?.params.style
+      ? Taro.getCurrentInstance().router?.params.style
+      : "send"
+  );
   return (
     <view>
-      <Header title="手机人信息"></Header>
+      <Header
+        title={msgState === "send" ? "寄件人信息" : "收件人信息"}
+      ></Header>
       <view className="peopleMsgDetailContainer">
         <view className="head">
           <view
@@ -19,14 +28,18 @@ const PeopleMsgDetail = () => {
             style={{
               width: 40,
               height: 40,
-              background: `url('${collect_people}')`,
+              background: `url('${
+                msgState === "send" ? send_people : collect_people
+              }')`,
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
               backgroundSize: "100%,100%",
               marginLeft: 10,
             }}
           ></view>
-          <view className="title">收件人信息</view>
+          <view className="title">
+            {msgState === "send" ? "寄件人信息" : "收件人信息"}
+          </view>
         </view>
         <view className="information">
           <view className="info-item">

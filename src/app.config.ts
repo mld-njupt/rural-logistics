@@ -1,10 +1,9 @@
 export default {
   pages: [
-    "pages/PeopleMsgDetail/PeopleMsgDetail",
+    "pages/index/index",
     "pages/SendDetail/SendDetail",
     "pages/Recruit/Recruit",
-    "pages/index/index",
-    // "pages/Send/Send",
+    "pages/PeopleMsgDetail/PeopleMsgDetail",
   ],
   window: {
     backgroundTextStyle: "light",

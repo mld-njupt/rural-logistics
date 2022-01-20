@@ -1,4 +1,5 @@
 /* eslint-disable jsx-quotes */
+import Taro from "@tarojs/taro";
 import { Checkbox, Radio } from "@tarojs/components";
 import "./SendDetail.scss";
 import Header from "../../components/Header/Header";
@@ -9,6 +10,17 @@ const SendDetail = () => {
   const handleCheckbox = (e) => {
     console.log(e);
   };
+  const toMsgDetail = (e, name) => {
+    if (name === "send") {
+      Taro.navigateTo({
+        url: `/pages/PeopleMsgDetail/PeopleMsgDetail?style=send`,
+      });
+    } else {
+      Taro.navigateTo({
+        url: `/pages/PeopleMsgDetail/PeopleMsgDetail?style=collect`,
+      });
+    }
+  };
   return (
     <view className="sendDetailContainer">
       <Header title="寄快递"></Header>
@@ -17,11 +29,15 @@ const SendDetail = () => {
           title="寄件人信息"
           url={send_people}
           address="点击填写寄件地址"
+          name="send"
+          onClick={toMsgDetail}
         ></PeopleMsg>
         <PeopleMsg
           title="收件人信息"
           url={collect_people}
           address="点击填写收件地址"
+          name="collect"
+          onClick={toMsgDetail}
         ></PeopleMsg>
       </view>
       <view className="dispose">
