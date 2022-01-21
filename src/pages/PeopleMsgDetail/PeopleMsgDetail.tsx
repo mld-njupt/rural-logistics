@@ -2,9 +2,11 @@
 import Taro from "@tarojs/taro";
 import { useState } from "react";
 import { Input, Button, ScrollView, Textarea } from "@tarojs/components";
+import { useRecoilState, RecoilRoot } from "recoil";
 import Header from "../../components/Header/Header";
 import { send_people, collect_people } from "../../utils/base64";
-
+import { send_people_store, collect_people_store } from "../../store/people";
+import { debounce } from "../../utils/debounce";
 import "./PeopleMsgDetail.scss";
 
 const PeopleMsgDetail = () => {
@@ -16,6 +18,13 @@ const PeopleMsgDetail = () => {
       ? Taro.getCurrentInstance().router?.params.style
       : "send"
   );
+  const [sendPeople, setSendPeople] = useRecoilState(send_people_store);
+  const [collectPeople, setCollectPeople] =
+    useRecoilState(collect_people_store);
+  const [people, setPeople] = useState({});
+  const handleInput = debounce((e) => {
+    console.log(e);
+  }, 500);
   return (
     <view>
       <Header
@@ -48,6 +57,7 @@ const PeopleMsgDetail = () => {
               <Input
                 placeholder="请输入姓名"
                 placeholderStyle="color:#d8d6d6"
+                onInput={handleInput}
               ></Input>
             </view>
           </view>
@@ -58,6 +68,7 @@ const PeopleMsgDetail = () => {
                 placeholder="请输入手机号"
                 placeholderStyle="color:#d8d6d6"
                 maxlength={11}
+                onInput={handleInput}
               ></Input>
               <view className="getTel">
                 <Button
@@ -84,6 +95,7 @@ const PeopleMsgDetail = () => {
                 placeholder="请输入详细地址"
                 placeholderStyle="color:#d8d6d6"
                 style="width:100%;min-height:80px;max-height:80px;line-height:0; "
+                onInput={handleInput}
               ></Textarea>
             </view>
           </view>

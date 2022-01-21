@@ -1,5 +1,6 @@
 /* eslint-disable import/first */
 import { Component } from "react";
+import { RecoilRoot } from "recoil";
 import "./app.scss";
 // import "taro-ui/dist/style/index.scss";
 
@@ -13,8 +14,9 @@ class App extends Component {
   componentDidCatchError() {}
 
   // this.props.children 是将要会渲染的页面
+
   render() {
-    return this.props.children;
+    return <RecoilRoot>{this.props.children}</RecoilRoot>;
   }
 }
 

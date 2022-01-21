@@ -1,6 +1,6 @@
 {
   "miniprogramRoot": "./",
-  "projectname": "rural_logistic",
+  "projectname": "freegate-weapp",
   "appid": "touristappid",
   "setting": {
     "es6": false,
