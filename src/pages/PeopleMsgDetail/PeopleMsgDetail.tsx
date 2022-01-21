@@ -1,7 +1,7 @@
 /* eslint-disable jsx-quotes */
 import Taro from "@tarojs/taro";
-import { useState } from "react";
-import { Input, Button, ScrollView, Textarea } from "@tarojs/components";
+import { useState, useEffect } from "react";
+import { Input, Button, View, Textarea, Picker } from "@tarojs/components";
 import { useRecoilState, RecoilRoot } from "recoil";
 import Header from "../../components/Header/Header";
 import { send_people, collect_people } from "../../utils/base64";
@@ -21,10 +21,25 @@ const PeopleMsgDetail = () => {
   const [sendPeople, setSendPeople] = useRecoilState(send_people_store);
   const [collectPeople, setCollectPeople] =
     useRecoilState(collect_people_store);
-  const [people, setPeople] = useState({});
-  const handleInput = debounce((e) => {
-    console.log(e);
-  }, 500);
+  const [people, setPeople] = useState({
+    phone: "",
+    name: "",
+    address: "",
+    region: [],
+  });
+  const debounceHandleInput = debounce(handleInput, 500);
+  function handleInput(e) {
+    setPeople({ ...people, [e.mpEvent.target.id]: e.detail.value });
+    // console.log(e);
+  }
+  const handleConfirm = () => {
+    msgState === "send"
+      ? setSendPeople({ ...people })
+      : setCollectPeople({ ...people });
+  };
+  useEffect(() => {
+    console.log(people);
+  }, [people]);
   return (
     <view>
       <Header
@@ -55,9 +70,10 @@ const PeopleMsgDetail = () => {
             <view className="item-label">姓名</view>
             <view className="item-content">
               <Input
+                id="name"
                 placeholder="请输入姓名"
                 placeholderStyle="color:#d8d6d6"
-                onInput={handleInput}
+                onInput={debounceHandleInput}
               ></Input>
             </view>
           </view>
@@ -65,10 +81,11 @@ const PeopleMsgDetail = () => {
             <view className="item-label">手机号</view>
             <view className="item-content item-phone">
               <Input
+                id="phone"
                 placeholder="请输入手机号"
                 placeholderStyle="color:#d8d6d6"
                 maxlength={11}
-                onInput={handleInput}
+                onInput={debounceHandleInput}
               ></Input>
               <view className="getTel">
                 <Button
@@ -86,16 +103,61 @@ const PeopleMsgDetail = () => {
           <view className="info-item">
             <view className="item-label">地区</view>
 
-            <view className="item-content"></view>
+            <view className="item-content">
+              <Picker
+                id="region"
+                mode="region"
+                onChange={debounceHandleInput}
+                value={[]}
+                style={{
+                  height: "50%",
+                  marginTop: "10px",
+                  color: "#d8d6d6",
+                  width: "400rpx",
+                }}
+                // disabled={props.disabled}
+              >
+                {people.region[0] && people.region[1] && people.region[2] ? (
+                  <>
+                    <View
+                      style={{
+                        display: "inline",
+                      }}
+                    >
+                      {people.region[0]}
+                    </View>
+                    -
+                    <View
+                      style={{
+                        display: "inline",
+                      }}
+                    >
+                      {people.region[1]}
+                    </View>
+                    -
+                    <View
+                      style={{
+                        display: "inline",
+                      }}
+                    >
+                      {people.region[2]}
+                    </View>
+                  </>
+                ) : (
+                  "请选择目的地区"
+                )}
+              </Picker>
+            </view>
           </view>
           <view className="info-item address">
             <view className="item-label">详细地址</view>
             <view className="item-content">
               <Textarea
+                id="address"
                 placeholder="请输入详细地址"
                 placeholderStyle="color:#d8d6d6"
                 style="width:100%;min-height:80px;max-height:80px;line-height:0; "
-                onInput={handleInput}
+                onInput={debounceHandleInput}
               ></Textarea>
             </view>
           </view>

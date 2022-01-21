@@ -7,6 +7,8 @@ export function debounce(fn, interval) {
     if (timer) {
       clearTimeout(timer);
     }
-    timer = setTimeout(fn.apply(_this, args), interval);
+    timer = setTimeout(function () {
+      fn.apply(_this, args);
+    }, interval);
   };
 }
