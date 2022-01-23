@@ -2,12 +2,12 @@
 
 import "./PeopleMsg.scss";
 
-const PeopleMsg = ({ url, title, address, onClick, name }) => {
+const PeopleMsg = ({ url, title, address, onClick, style }) => {
   return (
     <view
       className="peopleMsgContainer"
       onClick={(e) => {
-        onClick(e, name);
+        onClick(e, style);
       }}
     >
       <view

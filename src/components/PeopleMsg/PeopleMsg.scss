@@ -18,6 +18,10 @@
       color: #8a8a8a;
       padding: 15px 0;
       .text {
+        width: 300rpx;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         height: 40px;
         line-height: 40px;
       }

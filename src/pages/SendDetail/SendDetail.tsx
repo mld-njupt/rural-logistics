@@ -1,17 +1,37 @@
 /* eslint-disable jsx-quotes */
 import Taro from "@tarojs/taro";
 import { Checkbox, Radio } from "@tarojs/components";
-import "./SendDetail.scss";
+import { useRecoilState } from "recoil";
 import Header from "../../components/Header/Header";
 import PeopleMsg from "../../components/PeopleMsg/PeopleMsg";
+import { send_people_store, collect_people_store } from "../../store/people";
 import { send_people, collect_people } from "../../utils/base64";
+import "./SendDetail.scss";
 
 const SendDetail = () => {
+  const [sendPeople, setSendPeople] = useRecoilState(send_people_store);
+  const [collectPeople, setCollectPeople] =
+    useRecoilState(collect_people_store);
   const handleCheckbox = (e) => {
     console.log(e);
   };
-  const toMsgDetail = (e, name) => {
-    if (name === "send") {
+  const {
+    phone: sPhone,
+    name: sName,
+    address: sAddress,
+    region: sRegion,
+  } = sendPeople;
+  const {
+    phone: cPhone,
+    name: cName,
+    address: cAddress,
+    region: cRegion,
+  } = collectPeople;
+  let sRegionString = sRegion.join("-");
+  let cRegionString = cRegion.join("-");
+  // regionString = region.toString();
+  const toMsgDetail = (e, style) => {
+    if (style === "send") {
       Taro.navigateTo({
         url: `/pages/PeopleMsgDetail/PeopleMsgDetail?style=send`,
       });
@@ -26,17 +46,17 @@ const SendDetail = () => {
       <Header title="寄快递"></Header>
       <view className="sendMsg">
         <PeopleMsg
-          title="寄件人信息"
+          title={(sName && sPhone && `${sName} ${sPhone}`) || "寄件人信息"}
           url={send_people}
-          address="点击填写寄件地址"
-          name="send"
+          address={(sRegionString && `${sRegionString}`) || "点击填写寄件地址"}
+          style="send"
           onClick={toMsgDetail}
         ></PeopleMsg>
         <PeopleMsg
-          title="收件人信息"
+          title={(cName && cPhone && `${cName} ${cPhone}`) || "收件人信息"}
           url={collect_people}
-          address="点击填写收件地址"
-          name="collect"
+          address={(cRegionString && `${cRegionString}`) || "点击填写收件地址"}
+          style="collect"
           onClick={toMsgDetail}
         ></PeopleMsg>
       </view>
@@ -63,7 +83,7 @@ const SendDetail = () => {
           </view>
         </view>
         <view className="dispose-item price-protection">
-          <view className="title">是否价保</view>
+          <view className="title">是否保价</view>
           {/* <view className="msg">
             选填
             <view className="right"></view>

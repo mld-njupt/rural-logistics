@@ -12,10 +12,7 @@ import Header from "../../components/Header/Header";
 import RecruitCard from "../../components/RecruitCard/RecruitCard";
 import "./Recruit.scss";
 
-const Index = () => {
-  const [value, setValue] = useState(0);
-  const className = (baseName, isSelected) =>
-    (isSelected ? [baseName].concat("selected") : [baseName]).join(" ");
+const Reruit = () => {
   return (
     <view>
       <Header title="招聘中心"></Header>
@@ -48,4 +45,4 @@ const Index = () => {
     </view>
   );
 };
-export default Index;
+export default Reruit;

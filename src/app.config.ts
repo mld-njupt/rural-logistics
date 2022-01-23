@@ -18,11 +18,11 @@ export default {
     list: [
       {
         pagePath: "pages/index/index",
-        text: "收件",
+        text: "首页",
         // 未点击时显示的图片
-        iconPath: "assets/collect.png",
+        iconPath: "assets/index.png",
         // 点击后显示的图片
-        selectedIconPath: "assets/collect_selected.png",
+        selectedIconPath: "assets/index_selected.png",
       },
       {
         pagePath: "pages/SendDetail/SendDetail",

@@ -36,10 +36,11 @@ const PeopleMsgDetail = () => {
     msgState === "send"
       ? setSendPeople({ ...people })
       : setCollectPeople({ ...people });
+    Taro.switchTab({
+      url: `/pages/SendDetail/SendDetail`,
+    });
   };
-  useEffect(() => {
-    console.log(people);
-  }, [people]);
+
   return (
     <view>
       <Header
@@ -166,7 +167,9 @@ const PeopleMsgDetail = () => {
             <view className="item-content">清空当前信息</view>
           </view> */}
         </view>
-        <view className="confirm">确认信息</view>
+        <view className="confirm" onClick={handleConfirm}>
+          确认信息
+        </view>
       </view>
     </view>
   );
