@@ -1,4 +1,5 @@
 .recruitCardContainer {
+  background-color: whitesmoke;
   width: 650rpx;
   //   height: 160px;
   display: flex;
@@ -20,7 +21,7 @@
       font-size: 40px;
     }
     .salary {
-      color: #12d4db;
+      color: #3cc2bb;
       font-weight: bold;
     }
     .from {
@@ -36,7 +37,7 @@
       border-radius: 20px;
       padding: 10px;
       text-align: center;
-      color: #12d4db;
+      color: #3cc2bb;
       background: rgba(101, 247, 247, 0.35);
     }
   }

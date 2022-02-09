@@ -26,7 +26,11 @@ const Index = () => {
             <TabPanel>
               <ScrollView scrollY scrollWithAnimation scrollTop={0}>
                 <view className="transportCardList">
-                  <TransportCard></TransportCard>
+                  <TransportCard
+                    state="运输中"
+                    goodsMsg="天猫 | 【官方旗舰店】深入浅出Node.js朴灵原创Node.js开发实战详解"
+                    transportMsg="圆通速递：北京是海淀区复兴路公司 已揽收"
+                  ></TransportCard>
                 </view>
               </ScrollView>
             </TabPanel>

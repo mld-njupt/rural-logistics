@@ -1,9 +1,12 @@
 /* eslint-disable jsx-quotes */
+import { useState } from "react";
 import Taro from "@tarojs/taro";
-import { Checkbox, Radio } from "@tarojs/components";
+import { Checkbox, Picker, Radio } from "@tarojs/components";
 import { useRecoilState } from "recoil";
 import Header from "../../components/Header/Header";
 import PeopleMsg from "../../components/PeopleMsg/PeopleMsg";
+import RLPicker from "../../components/RLPicker/RLPicker";
+import { goods_option, time_option } from "../../utils/selector_options";
 import { send_people_store, collect_people_store } from "../../store/people";
 import { send_people, collect_people } from "../../utils/base64";
 import "./SendDetail.scss";
@@ -14,6 +17,13 @@ const SendDetail = () => {
     useRecoilState(collect_people_store);
   const handleCheckbox = (e) => {
     console.log(e);
+  };
+  const [logistiConfig, setLogistiConfig] = useState({
+    time: "",
+    goods: "",
+  });
+  const handlePickerConfig = (e) => {
+    console.log(e.detail.value);
   };
   const {
     phone: sPhone,
@@ -63,17 +73,29 @@ const SendDetail = () => {
       <view className="dispose">
         <view className="dispose-item goods">
           <view className="title">物品信息</view>
-          <view className="msg">
-            请选择物品信息
-            <view className="right"></view>
-          </view>
+          <RLPicker
+            style={{ width: "200px", height: "48rpx" }}
+            range={goods_option}
+            handlePicker={handlePickerConfig}
+          >
+            <view className="msg">
+              <view>请选择物品信息</view>
+              <view className="right"></view>
+            </view>
+          </RLPicker>
         </view>
         <view className="dispose-item time">
           <view className="title">期望上门时间</view>
-          <view className="msg">
-            请选择上面信息
-            <view className="right"></view>
-          </view>
+          <RLPicker
+            style={{ width: "180px", height: "48rpx" }}
+            range={goods_option}
+            handlePicker={handlePickerConfig}
+          >
+            <view className="msg">
+              <view>请选择上面信息</view>
+              <view className="right"></view>
+            </view>
+          </RLPicker>
         </view>
         <view className="dispose-item message">
           <view className="title">给快递员留言</view>

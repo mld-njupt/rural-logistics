@@ -62,7 +62,7 @@ page {
           button {
             border: none;
             width: 200rpx;
-            color: #12d4db;
+            color: #3cc2bb;
             font-size: 26px;
             height: 100%;
             line-height: 80px;
@@ -89,16 +89,6 @@ page {
     padding: 20px 0;
     height: 65px;
     line-height: 65px;
-    background: #00fff0; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-      to right,
-      #00fff0,
-      #12d4db
-    ); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(
-      to right,
-      #00fff0,
-      #12d4db
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #3cc2bb;
   }
 }

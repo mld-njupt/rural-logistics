@@ -29,34 +29,37 @@ page {
     align-items: center;
 
     .dispose-item {
+      height: 80px;
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 40px 0;
+      padding: 20px 0;
       //   font-weight: bold;
       font-size: 36px;
       border-bottom: 1px solid #d8d6d6;
       .title {
         color: #8a8a8a;
         margin-left: 40rpx;
+        width: 244rpx;
       }
       .msg {
-        height: 24px;
-        line-height: 24px;
+        height: 48px;
+        line-height: 48px;
         color: #c0b9b9;
-        margin-left: 100rpx;
         display: flex;
         align-items: center;
-        margin-right: 48rpx;
-      }
-      .right {
-        width: 40px;
-        height: 40px;
-        background: url("../../assets/right.png");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
+        margin-right: 20px;
+        justify-content: flex-end;
+
+        .right {
+          width: 40px;
+          height: 40px;
+          background: url("../../assets/right.png");
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+        }
       }
     }
   }
@@ -71,16 +74,6 @@ page {
     padding: 20px 0;
     height: 65px;
     line-height: 65px;
-    background: #00fff0; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-      to right,
-      #00fff0,
-      #12d4db
-    ); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(
-      to right,
-      #00fff0,
-      #12d4db
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #3cc2bb;
   }
 }

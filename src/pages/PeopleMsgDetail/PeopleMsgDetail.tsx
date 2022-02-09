@@ -27,7 +27,7 @@ const PeopleMsgDetail = () => {
     address: "",
     region: [],
   });
-  const debounceHandleInput = debounce(handleInput, 500);
+  const handlePeopleMsg = debounce(handleInput, 500);
   function handleInput(e) {
     setPeople({ ...people, [e.mpEvent.target.id]: e.detail.value });
     // console.log(e);
@@ -74,7 +74,7 @@ const PeopleMsgDetail = () => {
                 id="name"
                 placeholder="请输入姓名"
                 placeholderStyle="color:#d8d6d6"
-                onInput={debounceHandleInput}
+                onInput={handlePeopleMsg}
               ></Input>
             </view>
           </view>
@@ -86,7 +86,7 @@ const PeopleMsgDetail = () => {
                 placeholder="请输入手机号"
                 placeholderStyle="color:#d8d6d6"
                 maxlength={11}
-                onInput={debounceHandleInput}
+                onInput={handlePeopleMsg}
               ></Input>
               <view className="getTel">
                 <Button
@@ -108,7 +108,7 @@ const PeopleMsgDetail = () => {
               <Picker
                 id="region"
                 mode="region"
-                onChange={debounceHandleInput}
+                onChange={handlePeopleMsg}
                 value={[]}
                 style={{
                   height: "50%",
@@ -158,7 +158,7 @@ const PeopleMsgDetail = () => {
                 placeholder="请输入详细地址"
                 placeholderStyle="color:#d8d6d6"
                 style="width:100%;min-height:80px;max-height:80px;line-height:0; "
-                onInput={debounceHandleInput}
+                onInput={handlePeopleMsg}
               ></Textarea>
             </view>
           </view>
