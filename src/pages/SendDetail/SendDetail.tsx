@@ -23,7 +23,17 @@ const SendDetail = () => {
     goods: "",
   });
   const handlePickerConfig = (e) => {
-    console.log(e.detail.value);
+    if (e.mpEvent.target.id === "goods") {
+      setLogistiConfig({
+        ...logistiConfig,
+        [e.mpEvent.target.id]: goods_option[e.detail.value],
+      });
+    } else {
+      setLogistiConfig({
+        ...logistiConfig,
+        [e.mpEvent.target.id]: time_option[e.detail.value],
+      });
+    }
   };
   const {
     phone: sPhone,
@@ -37,6 +47,7 @@ const SendDetail = () => {
     address: cAddress,
     region: cRegion,
   } = collectPeople;
+  const { goods, time } = logistiConfig;
   let sRegionString = sRegion.join("-");
   let cRegionString = cRegion.join("-");
   // regionString = region.toString();
@@ -77,9 +88,10 @@ const SendDetail = () => {
             style={{ width: "200px", height: "48rpx" }}
             range={goods_option}
             handlePicker={handlePickerConfig}
+            id="goods"
           >
             <view className="msg">
-              <view>请选择物品信息</view>
+              <view>{goods ? goods : "请选择物品信息"}</view>
               <view className="right"></view>
             </view>
           </RLPicker>
@@ -88,11 +100,12 @@ const SendDetail = () => {
           <view className="title">期望上门时间</view>
           <RLPicker
             style={{ width: "180px", height: "48rpx" }}
-            range={goods_option}
+            range={time_option}
             handlePicker={handlePickerConfig}
+            id="time"
           >
             <view className="msg">
-              <view>请选择上面信息</view>
+              <view>{time ? time : "请选择时间段"}</view>
               <view className="right"></view>
             </view>
           </RLPicker>

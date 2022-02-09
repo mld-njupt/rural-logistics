@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import { Picker } from "@tarojs/components";
 
 const RLPicker = (props) => {
-  const { range, handlePicker, style, children } = props;
-  console.log(props);
+  const { range, handlePicker, style, children, id } = props;
   return (
     <Picker
       mode="selector"
@@ -12,6 +11,7 @@ const RLPicker = (props) => {
       value={0}
       onChange={handlePicker}
       style={style}
+      id={id}
     >
       {children}
     </Picker>
