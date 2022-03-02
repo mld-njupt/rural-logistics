@@ -1,5 +1,5 @@
 /* eslint-disable jsx-quotes */
-import { useState ,useEffect} from "react";
+import { useState, useEffect } from "react";
 import Taro from "@tarojs/taro";
 import { ScrollView } from "@tarojs/components";
 import {
@@ -14,9 +14,6 @@ import TransportCard from "../../components/TransportCard/TransPortCard";
 import "./index.scss";
 
 const Index = () => {
-  useEffect(()=>{
-    Taro.navigateTo({url:"../Login/Login"})
-},[])
   return (
     <view>
       <Header title="首页"></Header>
