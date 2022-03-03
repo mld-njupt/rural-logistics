@@ -1,0 +1,97 @@
+.address-item-wrap {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  .show-wrap {
+    z-index: 100;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    .checkbox-wrap {
+      margin-left: 40px;
+    }
+    .msg-wrap {
+      width: 500px;
+      height: 100px;
+      padding: 60px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-left: 40px;
+      .name-phone {
+        display: flex;
+        align-items: center;
+        font-size: 34px;
+        font-weight: 500;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        .default-icon {
+          margin-left: 20px;
+          width: 80px;
+          height: 40px;
+          border: 1px solid #3cc2bb;
+          color: #3cc2bb;
+          border-radius: 20px;
+          text-align: center;
+          line-height: 40px;
+          font-size: 30px;
+        }
+      }
+      .location {
+        font-size: 34px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+    .operate-wrap {
+      margin-left: 20px;
+      width: 50px;
+      height: 50px;
+      background-image: url("../../assets/edit.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+  }
+  .cover-wrap {
+    z-index: 101;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    .cover-item {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      margin-right: 50px;
+    }
+    .edit {
+      background-image: url(../../assets/inner_edit.png);
+    }
+    .delete {
+      background-image: url(../../assets/delete.png);
+    }
+    .close {
+      margin-right: 50px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: url(../../assets/close.png);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+  }
+}

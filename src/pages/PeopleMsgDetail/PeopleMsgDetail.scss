@@ -78,6 +78,11 @@ page {
       }
     }
   }
+  .is-default {
+    display: flex;
+    align-items: center;
+    color: #8a8a8a;
+  }
   .confirm {
     // margin-top: -180px;
     margin-top: 300rpx;

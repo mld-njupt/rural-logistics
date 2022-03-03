@@ -1,5 +1,6 @@
 export default {
   pages: [
+    "pages/AddressBook/AddressBook",
     "pages/Login/Login",
     "pages/index/index",
     "pages/SendDetail/SendDetail",

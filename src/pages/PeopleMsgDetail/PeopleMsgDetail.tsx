@@ -1,9 +1,17 @@
 /* eslint-disable jsx-quotes */
 import Taro from "@tarojs/taro";
 import { useState, useEffect } from "react";
-import { Input, Button, View, Textarea, Picker } from "@tarojs/components";
+import {
+  Input,
+  Button,
+  View,
+  Textarea,
+  Picker,
+  Checkbox,
+} from "@tarojs/components";
 import { useRecoilState, RecoilRoot } from "recoil";
 import Header from "../../components/Header/Header";
+import { address } from "../../api/address";
 import { send_people, collect_people } from "../../utils/base64";
 import { send_people_store, collect_people_store } from "../../store/people";
 import { debounce } from "../../utils/debounce";
@@ -13,6 +21,7 @@ const PeopleMsgDetail = () => {
   const getPhoneNumber = (e) => {
     console.log(e.detail.code);
   };
+  const [isDefault, setIsDefault] = useState(false);
   const [msgState, setMsgState] = useState(
     Taro.getCurrentInstance().router?.params.style
       ? Taro.getCurrentInstance().router?.params.style
@@ -32,10 +41,23 @@ const PeopleMsgDetail = () => {
     setPeople({ ...people, [e.mpEvent.target.id]: e.detail.value });
     // console.log(e);
   }
+  const handleCheckbox = () => {
+    setIsDefault((prev) => {
+      return !prev;
+    });
+  };
   const handleConfirm = () => {
     msgState === "send"
       ? setSendPeople({ ...people })
       : setCollectPeople({ ...people });
+    address(
+      "POST",
+      isDefault,
+      people.name,
+      people.phone,
+      people.region.toString(),
+      people.address
+    );
     Taro.switchTab({
       url: `/pages/SendDetail/SendDetail`,
     });
@@ -166,6 +188,15 @@ const PeopleMsgDetail = () => {
             <view className="item-label"></view>
             <view className="item-content">清空当前信息</view>
           </view> */}
+        </view>
+        <view className="is-default">
+          <Checkbox
+            onClick={handleCheckbox}
+            value="选中"
+            color="#12d4db"
+            className="msg"
+          ></Checkbox>
+          <view>设为默认地址</view>
         </view>
         <view className="confirm" onClick={handleConfirm}>
           确认信息

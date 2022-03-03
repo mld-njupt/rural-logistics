@@ -55,6 +55,10 @@ const login = (userType: string) => {
         },
         method: "POST",
         success: function (data: any) {
+          Taro.setStorage({
+            key: "user_type",
+            data: userType,
+          });
           Taro.showToast({
             title: "登录成功",
             icon: "success",

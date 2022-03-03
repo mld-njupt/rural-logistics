@@ -4,12 +4,7 @@ import "./PeopleMsg.scss";
 
 const PeopleMsg = ({ url, title, address, onClick, style }) => {
   return (
-    <view
-      className="peopleMsgContainer"
-      onClick={(e) => {
-        onClick(e, style);
-      }}
-    >
+    <view className="peopleMsgContainer">
       <view
         className="icon"
         style={{
@@ -23,8 +18,16 @@ const PeopleMsg = ({ url, title, address, onClick, style }) => {
         }}
       ></view>
       <view className="msgDetail">
-        <view className="title">{title}</view>
-        <view className="address">
+        <view className="title-wrap">
+          <view className="title">{title}</view>
+          <view className="address-book">地址簿</view>
+        </view>
+        <view
+          onClick={(e) => {
+            onClick(e, style);
+          }}
+          className="address"
+        >
           <view className="text">{address}</view>
           <view className="right"></view>
         </view>

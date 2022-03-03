@@ -44,7 +44,9 @@ const Login = () => {
   }, []);
   return (
     <view className="login-wrap">
-      <view className="title">请选择登录类型</view>
+      <view className="title" style={{ letterSpacing: "3px" }}>
+        请选择登录类型
+      </view>
       <view className="options">
         <view
           className={admin ? "selected option" : "option"}

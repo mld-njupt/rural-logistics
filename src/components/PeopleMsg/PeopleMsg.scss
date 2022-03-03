@@ -6,11 +6,25 @@
   .msgDetail {
     display: flex;
     flex-direction: column;
-    .title {
-      height: 40px;
-      line-height: 40px;
-      font-size: 40px;
-      padding: 20px 0;
+    .title-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #8a8a8a;
+      padding: 15px 0;
+      .title {
+        width: 300rpx;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        height: 40px;
+        line-height: 40px;
+      }
+      .address-book {
+        width: 120px;
+        height: 40px;
+        // margin-left: 200rpx;
+      }
     }
     .address {
       display: flex;
