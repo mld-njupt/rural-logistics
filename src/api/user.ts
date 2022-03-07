@@ -31,7 +31,7 @@ const getOpenId = () => {
           success: function (data: any) {
             Taro.setStorage({
               key: "open_id",
-              data: data.data.open_id,
+              data: data.data.user_id,
             });
           },
         });
@@ -46,11 +46,11 @@ const login = (userType: string) => {
   return Taro.getStorage({
     key: "open_id",
     success: function (res) {
-      console.log(res.data);
+      // console.log(res.data);
       Taro.request({
         url: "http://10.160.181.146:8888/admin-login",
         data: {
-          open_id: res.data,
+          user_id: res.data,
           user_type: userType,
         },
         method: "POST",
@@ -59,14 +59,17 @@ const login = (userType: string) => {
             key: "user_type",
             data: userType,
           });
-          Taro.showToast({
-            title: "登录成功",
-            icon: "success",
-            duration: 2000,
-          });
-          Taro.switchTab({
-            url: "../index/index",
-          });
+          data.data.code == 200 &&
+            Taro.showToast({
+              title: "登录成功",
+              icon: "success",
+              duration: 2000,
+            });
+
+          data.data.code == 200 &&
+            Taro.switchTab({
+              url: "../index/index",
+            });
         },
       });
     },

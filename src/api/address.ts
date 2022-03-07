@@ -33,10 +33,13 @@ const address = async (
       key: "user_type",
     });
   } catch {}
+  // console.log(open_id.data);
   return Taro.request({
     url: "http://10.160.181.146:8888/address",
     data: {
-      user_id: open_id.data,
+      //测试
+
+      user_id: open_id.data || "111",
       user_type: user_type.data,
       is_default,
       name,
@@ -48,4 +51,24 @@ const address = async (
     success: function (res) {},
   });
 };
-export { address };
+//获取全部地址
+const getAllAddress = async () => {
+  let open_id, user_type;
+  try {
+    open_id = await Taro.getStorage({
+      key: "open_id",
+    });
+    user_type = await Taro.getStorage({
+      key: "user_type",
+    });
+  } catch {}
+  return Taro.request({
+    url: "http://10.160.181.146:8888/all-address",
+    data: {
+      user_id: open_id.data,
+      user_type: user_type.data,
+    },
+    method: "GET",
+  });
+};
+export { address, getAllAddress };

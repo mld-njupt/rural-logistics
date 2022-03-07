@@ -1,5 +1,5 @@
 /* eslint-disable jsx-quotes */
-
+import Taro from "@tarojs/taro";
 import "./PeopleMsg.scss";
 
 const PeopleMsg = ({ url, title, address, onClick, style }) => {
@@ -20,7 +20,16 @@ const PeopleMsg = ({ url, title, address, onClick, style }) => {
       <view className="msgDetail">
         <view className="title-wrap">
           <view className="title">{title}</view>
-          <view className="address-book">地址簿</view>
+          <view
+            onClick={() => {
+              Taro.navigateTo({
+                url: "../AddressBook/AddressBook",
+              });
+            }}
+            className="address-book"
+          >
+            地址簿
+          </view>
         </view>
         <view
           onClick={(e) => {

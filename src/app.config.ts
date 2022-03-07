@@ -1,11 +1,12 @@
 export default {
   pages: [
-    "pages/AddressBook/AddressBook",
+    // "pages/ChangeAddress/ChangeAddress",
     "pages/Login/Login",
     "pages/index/index",
     "pages/SendDetail/SendDetail",
     "pages/Recruit/Recruit",
     "pages/PeopleMsgDetail/PeopleMsgDetail",
+    "pages/AddressBook/AddressBook",
   ],
   window: {
     backgroundTextStyle: "light",

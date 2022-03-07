@@ -9,27 +9,16 @@ import {
   Picker,
   Checkbox,
 } from "@tarojs/components";
-import { useRecoilState, RecoilRoot } from "recoil";
 import Header from "../../components/Header/Header";
 import { address } from "../../api/address";
-import { send_people, collect_people } from "../../utils/base64";
-import { send_people_store, collect_people_store } from "../../store/people";
 import { debounce } from "../../utils/debounce";
-import "./PeopleMsgDetail.scss";
+import "./ChangeAddress.scss";
 
 const PeopleMsgDetail = () => {
   const getPhoneNumber = (e) => {
     console.log(e.detail.code);
   };
   const [isDefault, setIsDefault] = useState(false);
-  const [msgState, setMsgState] = useState(
-    Taro.getCurrentInstance().router?.params.style
-      ? Taro.getCurrentInstance().router?.params.style
-      : "send"
-  );
-  const [sendPeople, setSendPeople] = useRecoilState(send_people_store);
-  const [collectPeople, setCollectPeople] =
-    useRecoilState(collect_people_store);
   const [people, setPeople] = useState({
     phone: "",
     name: "",
@@ -39,7 +28,6 @@ const PeopleMsgDetail = () => {
   const handlePeopleMsg = debounce(handleInput, 500);
   function handleInput(e) {
     setPeople({ ...people, [e.mpEvent.target.id]: e.detail.value });
-    // console.log(e);
   }
   const handleCheckbox = () => {
     setIsDefault((prev) => {
@@ -47,48 +35,23 @@ const PeopleMsgDetail = () => {
     });
   };
   const handleConfirm = () => {
-    msgState === "send"
-      ? setSendPeople({ ...people })
-      : setCollectPeople({ ...people });
     address(
-      "POST",
+      "PATCH",
       isDefault,
       people.name,
       people.phone,
       people.region.toString(),
       people.address
-    ).then(() => {
-      Taro.switchTab({
-        url: `/pages/SendDetail/SendDetail`,
-      });
-    });
+    );
+    // Taro.navigateTo({
+    //   url: `/pages/Address/Address`,
+    // });
   };
 
   return (
     <view>
-      <Header
-        title={msgState === "send" ? "寄件人信息" : "收件人信息"}
-      ></Header>
+      <Header title="修改地址"></Header>
       <view className="peopleMsgDetailContainer">
-        <view className="head">
-          <view
-            className="icon"
-            style={{
-              width: 40,
-              height: 40,
-              background: `url('${
-                msgState === "send" ? send_people : collect_people
-              }')`,
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "100%,100%",
-              marginLeft: 10,
-            }}
-          ></view>
-          <view className="title">
-            {msgState === "send" ? "寄件人信息" : "收件人信息"}
-          </view>
-        </view>
         <view className="information">
           <view className="info-item">
             <view className="item-label">姓名</view>

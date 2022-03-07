@@ -1,18 +1,27 @@
 /* eslint-disable jsx-quotes */
+import Taro from "@tarojs/taro";
 import { Checkbox } from "@tarojs/components";
 import { useState } from "react";
 import "./AddressItem.scss";
 
 const AddressItem = () => {
   const [showCover, setShowCover] = useState(false);
+  const [isSelect, setIsSelect] = useState(false);
+  const handleCheckbox = () => {
+    setIsSelect((prev) => {
+      return !prev;
+    });
+  };
   return (
     <view className="address-item-wrap">
       <view className="show-wrap">
         <view className="checkbox-wrap">
           <Checkbox
+            checked={isSelect}
             value="选中"
             color="#12d4db"
             className="checkbox"
+            onClick={handleCheckbox}
           ></Checkbox>
         </view>
         <view className="msg-wrap">
@@ -32,7 +41,14 @@ const AddressItem = () => {
       </view>
       {showCover ? (
         <view className="cover-wrap">
-          <view className="cover-item edit"></view>
+          <view
+            onClick={() => {
+              Taro.navigateTo({
+                url: "../ChangeAddress/ChangeAddress",
+              });
+            }}
+            className="cover-item edit"
+          ></view>
           <view className="cover-item delete"></view>
           <view
             className="close"
