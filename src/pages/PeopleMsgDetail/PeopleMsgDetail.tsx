@@ -14,6 +14,7 @@ import Header from "../../components/Header/Header";
 import { address } from "../../api/address";
 import { send_people, collect_people } from "../../utils/base64";
 import { send_people_store, collect_people_store } from "../../store/people";
+import { address_store } from "../../store/address";
 import { debounce } from "../../utils/debounce";
 import "./PeopleMsgDetail.scss";
 
@@ -21,7 +22,7 @@ const PeopleMsgDetail = () => {
   const getPhoneNumber = (e) => {
     console.log(e.detail.code);
   };
-  const [isDefault, setIsDefault] = useState(false);
+  const [isDefault, setIsDefault] = useState("False");
   const [msgState, setMsgState] = useState(
     Taro.getCurrentInstance().router?.params.style
       ? Taro.getCurrentInstance().router?.params.style
@@ -30,12 +31,14 @@ const PeopleMsgDetail = () => {
   const [sendPeople, setSendPeople] = useRecoilState(send_people_store);
   const [collectPeople, setCollectPeople] =
     useRecoilState(collect_people_store);
+  const [addressId, setAddressId] = useRecoilState(address_store);
   const [people, setPeople] = useState({
     phone: "",
     name: "",
     address: "",
     region: [],
   });
+
   const handlePeopleMsg = debounce(handleInput, 500);
   function handleInput(e) {
     setPeople({ ...people, [e.mpEvent.target.id]: e.detail.value });
@@ -43,7 +46,7 @@ const PeopleMsgDetail = () => {
   }
   const handleCheckbox = () => {
     setIsDefault((prev) => {
-      return !prev;
+      return prev == "False" ? "True" : "False";
     });
   };
   const handleConfirm = () => {
@@ -57,13 +60,25 @@ const PeopleMsgDetail = () => {
       people.phone,
       people.region.toString(),
       people.address
-    ).then(() => {
+    ).then((res) => {
+      console.log(res.data);
+      msgState === "send"
+        ? setAddressId((prev) => {
+            return { ...prev, sendId: res.data.address_id };
+          })
+        : setAddressId((prev) => {
+            return { ...prev, collectId: res.data.address_id };
+          });
+      // setAddress(res.data.data.addressId);
       Taro.switchTab({
         url: `/pages/SendDetail/SendDetail`,
       });
     });
   };
-
+  // useEffect(() => {
+  //   console.log(addressId);
+  // }, [addressId]);
+  const isDefaultBoolean = isDefault == "False" ? false : true;
   return (
     <view>
       <Header
@@ -192,7 +207,7 @@ const PeopleMsgDetail = () => {
         </view>
         <view className="is-default">
           <Checkbox
-            checked={isDefault}
+            checked={isDefaultBoolean}
             onClick={handleCheckbox}
             value="选中"
             color="#12d4db"

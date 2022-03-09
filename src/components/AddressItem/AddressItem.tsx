@@ -1,20 +1,61 @@
 /* eslint-disable jsx-quotes */
 import Taro from "@tarojs/taro";
+import { useRecoilState } from "recoil";
 import { Checkbox } from "@tarojs/components";
 import { useState } from "react";
+import { address_store } from "../../../src/store/address";
 import "./AddressItem.scss";
 
-const AddressItem = () => {
+interface address {
+  is_default: string;
+  address_id: string;
+  name: string;
+  phone_number: string;
+  region: string;
+  location: string;
+  is_select: Boolean;
+  style: string | undefined;
+}
+const AddressItem = (props: address) => {
   const [showCover, setShowCover] = useState(false);
   const [isSelect, setIsSelect] = useState(false);
+  const [addressId, setAddressId] = useRecoilState(address_store);
   const handleCheckbox = () => {
     setIsSelect((prev) => {
       return !prev;
     });
   };
+  const {
+    is_default,
+    address_id,
+    name,
+    phone_number,
+    region,
+    location,
+    is_select,
+    style,
+  } = props;
   return (
     <view className="address-item-wrap">
-      <view className="show-wrap">
+      <view
+        className="show-wrap"
+        onClick={() => {
+          style === "send"
+            ? setAddressId((prev) => {
+                return { ...prev, sendId: address_id };
+              })
+            : setAddressId((prev) => {
+                return { ...prev, collectId: address_id };
+              });
+        }}
+        style={
+          is_select
+            ? {
+                background: "#e8f3ff",
+              }
+            : {}
+        }
+      >
         <view className="checkbox-wrap">
           <Checkbox
             checked={isSelect}
@@ -26,15 +67,19 @@ const AddressItem = () => {
         </view>
         <view className="msg-wrap">
           <view className="name-phone">
-            <view className="name">孟令东东</view>
-            <view className="phone">18269757721</view>
+            <view className="name">{name}</view>
+            <view className="phone">{phone_number}</view>
             <view className="default-icon">默认</view>
           </view>
-          <view className="location">谢谢谢谢、</view>
+          <view className="location">
+            {region}
+            {location}
+          </view>
         </view>
         <view
           className="operate-wrap"
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             setShowCover(true);
           }}
         ></view>
@@ -52,7 +97,8 @@ const AddressItem = () => {
           <view className="cover-item delete"></view>
           <view
             className="close"
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               setShowCover(false);
             }}
           ></view>

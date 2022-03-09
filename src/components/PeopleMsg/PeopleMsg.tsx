@@ -23,7 +23,7 @@ const PeopleMsg = ({ url, title, address, onClick, style }) => {
           <view
             onClick={() => {
               Taro.navigateTo({
-                url: "../AddressBook/AddressBook",
+                url: `../AddressBook/AddressBook?style=${style}`,
               });
             }}
             className="address-book"
