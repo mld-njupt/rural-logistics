@@ -4,13 +4,14 @@ import Taro from "@tarojs/taro";
 import { useRecoilState } from "recoil";
 import Header from "../../components/Header/Header";
 import AddressItem from "../../components/AddressItem/AddressItem";
-import { address_store } from "../../store/address";
+import { address_store, address_data_store } from "../../store/address";
 import { getAllAddress } from "../../api/address";
 import "./AddressBook.scss";
 
 const AddressBook = () => {
-  const [addressData, setAddressData] = useState<any[]>([]);
+  const [addressData, setAddressData] = useRecoilState(address_data_store);
   const [addressId, setAddressId] = useRecoilState(address_store);
+  const [freshen, setFreshen] = useState(0);
   const style = Taro.getCurrentInstance().router?.params.style;
   const address_id_style =
     style == "send" ? addressId.sendId : addressId.collectId;
@@ -18,7 +19,7 @@ const AddressBook = () => {
     getAllAddress().then((res) => {
       setAddressData(res.data.data);
     });
-  }, []);
+  }, [freshen]);
   return (
     <view>
       <Header title="地址簿"></Header>

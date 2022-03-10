@@ -15,14 +15,16 @@ const interceptor = function (chain) {
   });
 };
 Taro.addInterceptor(interceptor);
-//用户上传/修改地址
+//用户上传/修改/删除/更新地址
+
 const address = async (
   method,
-  is_default,
-  name,
-  phone_number,
-  region,
-  location
+  address_id?,
+  is_default?,
+  name?,
+  phone_number?,
+  region?,
+  location?
 ) => {
   let open_id, user_type;
   try {
@@ -38,14 +40,14 @@ const address = async (
     url: "http://10.160.181.146:8888/address",
     data: {
       //测试
-
-      user_id: open_id.data || "111",
-      user_type: user_type.data,
-      is_default,
-      name,
-      phone_number,
-      region,
-      location,
+      user_id: open_id.data || null,
+      user_type: user_type.data || null,
+      is_default: is_default || null,
+      name: name || null,
+      phone_number: phone_number || null,
+      region: region || null,
+      location: location || null,
+      address_id: address_id || null,
     },
     method,
     success: function (res) {},
@@ -71,4 +73,14 @@ const getAllAddress = async () => {
     method: "GET",
   });
 };
-export { address, getAllAddress };
+//获取单个地址
+const getSingleAddress = (address_id) => {
+  return Taro.request({
+    url: "http://10.160.181.146:8888/single-address",
+    data: {
+      address_id,
+    },
+    method: "GET",
+  });
+};
+export { address, getAllAddress, getSingleAddress };

@@ -55,6 +55,7 @@ const PeopleMsgDetail = () => {
       : setCollectPeople({ ...people });
     address(
       "POST",
+      null,
       isDefault,
       people.name,
       people.phone,

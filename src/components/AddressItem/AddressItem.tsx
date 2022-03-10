@@ -3,7 +3,10 @@ import Taro from "@tarojs/taro";
 import { useRecoilState } from "recoil";
 import { Checkbox } from "@tarojs/components";
 import { useState } from "react";
-import { address_store } from "../../../src/store/address";
+import { address, getSingleAddress } from "../../../src/api/address";
+import { send_people_store, collect_people_store } from "../../store/people";
+import { address_store, address_data_store } from "../../../src/store/address";
+
 import "./AddressItem.scss";
 
 interface address {
@@ -18,12 +21,40 @@ interface address {
 }
 const AddressItem = (props: address) => {
   const [showCover, setShowCover] = useState(false);
-  const [isSelect, setIsSelect] = useState(false);
+  // const [isSelect, setIsSelect] = useState(false);
   const [addressId, setAddressId] = useRecoilState(address_store);
-  const handleCheckbox = () => {
-    setIsSelect((prev) => {
-      return !prev;
-    });
+  const [addressData, setAddressData] = useRecoilState(address_data_store);
+  const [sendPeople, setSendPeople] = useRecoilState(send_people_store);
+  const [collectPeople, setCollectPeople] =
+    useRecoilState(collect_people_store);
+  // const handleCheckbox = () => {
+  //   setIsSelect((prev) => {
+  //     return !prev;
+  //   });
+  // };
+  const handleAddress = (type) => {
+    return () => {
+      setAddressId((prev) => {
+        return { ...prev, [type]: address_id };
+      });
+      getSingleAddress(address_id).then((res) => {
+        const { location, region, name, phone_number } = res.data.data;
+        const regionResult = region.split(",");
+        type == "sendId"
+          ? setSendPeople({
+              phone: phone_number,
+              region: regionResult,
+              name: name,
+              address: location,
+            })
+          : setCollectPeople({
+              phone: phone_number,
+              region: regionResult,
+              name: name,
+              address: location,
+            });
+      });
+    };
   };
   const {
     is_default,
@@ -40,13 +71,11 @@ const AddressItem = (props: address) => {
       <view
         className="show-wrap"
         onClick={() => {
+          // console.log("zx");
           style === "send"
-            ? setAddressId((prev) => {
-                return { ...prev, sendId: address_id };
-              })
-            : setAddressId((prev) => {
-                return { ...prev, collectId: address_id };
-              });
+            ? handleAddress("sendId")()
+            : handleAddress("collectId")();
+          Taro.switchTab({ url: "/pages/SendDetail/SendDetail" });
         }}
         style={
           is_select
@@ -57,19 +86,21 @@ const AddressItem = (props: address) => {
         }
       >
         <view className="checkbox-wrap">
-          <Checkbox
+          {/* <Checkbox
             checked={isSelect}
             value="选中"
             color="#12d4db"
             className="checkbox"
             onClick={handleCheckbox}
-          ></Checkbox>
+          ></Checkbox> */}
         </view>
         <view className="msg-wrap">
           <view className="name-phone">
             <view className="name">{name}</view>
             <view className="phone">{phone_number}</view>
-            <view className="default-icon">默认</view>
+            {is_default == "True" ? (
+              <view className="default-icon">默认</view>
+            ) : null}
           </view>
           <view className="location">
             {region}
@@ -94,7 +125,29 @@ const AddressItem = (props: address) => {
             }}
             className="cover-item edit"
           ></view>
-          <view className="cover-item delete"></view>
+          <view
+            className="cover-item delete"
+            onClick={() => {
+              Taro.showModal({
+                title: "提示",
+                content: "确认删除提示",
+                success: function (res) {
+                  if (res.confirm) {
+                    address("DELETE", address_id).then(() => {
+                      // @ts-ignore
+                      setAddressData((prev) => {
+                        prev.map((value: any) => {
+                          return value.address_id != address_id;
+                        });
+                      });
+                    });
+                  } else if (res.cancel) {
+                    console.log("用户点击取消");
+                  }
+                },
+              });
+            }}
+          ></view>
           <view
             className="close"
             onClick={(e) => {
