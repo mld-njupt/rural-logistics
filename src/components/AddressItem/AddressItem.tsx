@@ -135,11 +135,11 @@ const AddressItem = (props: address) => {
                   if (res.confirm) {
                     address("DELETE", address_id).then(() => {
                       // @ts-ignore
-                      setAddressData((prev) => {
-                        prev.map((value: any) => {
-                          return value.address_id != address_id;
-                        });
-                      });
+                      // setAddressData((prev) => {
+                      //   return prev.map((value: any) => {
+                      //     return value.address_id != address_id;
+                      //   });
+                      // });
                     });
                   } else if (res.cancel) {
                     console.log("用户点击取消");

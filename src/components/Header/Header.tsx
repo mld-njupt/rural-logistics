@@ -6,6 +6,7 @@ import { View, Text } from "@tarojs/components";
 import "./Header.scss";
 
 export default function Header(props: { title }) {
+  const [ishow, setIshow] = useState(true);
   const [sysTop, setSysTop] = useState([
     88, // 总高度
     44, // 状态栏高度
@@ -19,10 +20,17 @@ export default function Header(props: { title }) {
           res.statusBarHeight,
           res.system.indexOf("iOS") === -1 ? 48 : 44,
         ]);
+        console.log(res.system);
+        if (
+          res.system.indexOf("iOS") == -1 &&
+          res.system.indexOf("Android") == -1
+        ) {
+          setIshow(false);
+        }
       },
     });
   }, []);
-  return (
+  return ishow ? (
     <View
       className="Header"
       style={{
@@ -53,5 +61,5 @@ export default function Header(props: { title }) {
       </View>
       <View className="header-line"></View>
     </View>
-  );
+  ) : null;
 }

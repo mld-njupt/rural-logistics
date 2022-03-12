@@ -66,10 +66,17 @@ const login = (userType: string) => {
               duration: 2000,
             });
 
-          data.data.code == 200 &&
-            Taro.switchTab({
-              url: "../index/index",
-            });
+          if (data.data.code == 200) {
+            if (userType == "customer") {
+              Taro.switchTab({
+                url: "../index/index",
+              });
+            } else if (userType == "rider") {
+              Taro.navigateTo({
+                url: "../RiderIndex/RiderIndex",
+              });
+            }
+          }
         },
       });
     },

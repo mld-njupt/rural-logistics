@@ -8,6 +8,8 @@ import PeopleMsg from "../../components/PeopleMsg/PeopleMsg";
 import RLPicker from "../../components/RLPicker/RLPicker";
 import { goods_option, time_option } from "../../utils/selector_options";
 import { send_people_store, collect_people_store } from "../../store/people";
+import { address_store } from "../../store/address";
+import { order } from "../../api/order";
 import { send_people, collect_people } from "../../utils/base64";
 import "./SendDetail.scss";
 
@@ -15,6 +17,7 @@ const SendDetail = () => {
   const [sendPeople, setSendPeople] = useRecoilState(send_people_store);
   const [collectPeople, setCollectPeople] =
     useRecoilState(collect_people_store);
+  const [addressId, setAddressId] = useRecoilState(address_store);
   const handleCheckbox = (e) => {
     console.log(e);
   };
@@ -34,6 +37,11 @@ const SendDetail = () => {
         [e.mpEvent.target.id]: time_option[e.detail.value],
       });
     }
+  };
+  const handleSubmit = () => {
+    order(addressId.sendId, addressId.collectId).then((res) => {
+      console.log(res);
+    });
   };
   const {
     phone: sPhone,
@@ -119,10 +127,6 @@ const SendDetail = () => {
         </view>
         <view className="dispose-item price-protection">
           <view className="title">是否保价</view>
-          {/* <view className="msg">
-            选填
-            <view className="right"></view>
-          </view> */}
           <Checkbox
             onClick={handleCheckbox}
             value="选中"
@@ -131,7 +135,9 @@ const SendDetail = () => {
           ></Checkbox>
         </view>
       </view>
-      <view className="confirm">立即下单</view>
+      <view onClick={handleSubmit} className="confirm">
+        立即下单
+      </view>
     </view>
   );
 };

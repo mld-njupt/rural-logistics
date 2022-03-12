@@ -7,6 +7,8 @@ export default {
     "pages/Recruit/Recruit",
     "pages/PeopleMsgDetail/PeopleMsgDetail",
     "pages/AddressBook/AddressBook",
+    "pages/ChangeAddress/ChangeAddress",
+    "pages/RiderIndex/RiderIndex",
   ],
   window: {
     backgroundTextStyle: "light",
