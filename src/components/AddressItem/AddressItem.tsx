@@ -130,17 +130,18 @@ const AddressItem = (props: address) => {
             onClick={() => {
               Taro.showModal({
                 title: "提示",
-                content: "确认删除提示",
+                content: "确认删除？",
                 success: function (res) {
                   if (res.confirm) {
                     address("DELETE", address_id).then(() => {
-                      // @ts-ignore
-                      // setAddressData((prev) => {
-                      //   return prev.map((value: any) => {
-                      //     return value.address_id != address_id;
-                      //   });
-                      // });
+                      //@ts-ignore
+                      setAddressData((prev) => {
+                        return prev.filter((value: any) => {
+                          return value.address_id != address_id;
+                        });
+                      });
                     });
+                    setShowCover(false);
                   } else if (res.cancel) {
                     console.log("用户点击取消");
                   }

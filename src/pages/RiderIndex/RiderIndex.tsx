@@ -1,5 +1,6 @@
 /* eslint-disable jsx-quotes */
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 import { ScrollView } from "@tarojs/components";
 import {
   Tab,
@@ -10,9 +11,21 @@ import {
 } from "../../components/Tab/Tabs";
 import Header from "../../components/Header/Header";
 import TransportCard from "../../components/TransportCard/TransPortCard";
+import { untake_order_store, token_order_store } from "../../store/order";
+import { released_order } from "../../api/order";
 import "./RiderIndex.scss";
 
 const RiderIndex = () => {
+  const [orderData, setOrderData] = useRecoilState(untake_order_store);
+  const [tokenData, setTokenData] = useRecoilState(token_order_store);
+  useEffect(() => {
+    released_order("1", "5", 0).then((res) => {
+      setOrderData(res.data.data);
+    });
+    released_order("1", "5", 1).then((res) => {
+      setTokenData(res.data.data);
+    });
+  }, []);
   return (
     <view>
       <Header title=""></Header>
@@ -26,15 +39,51 @@ const RiderIndex = () => {
             <TabPanel>
               <ScrollView scrollY scrollWithAnimation scrollTop={0}>
                 <view className="transportCardList">
-                  <TransportCard
-                    state="运输中"
-                    goodsMsg="天猫 | 【官方旗舰店】深入浅出Node.js朴灵原创Node.js开发实战详解"
-                    transportMsg="圆通速递：北京是海淀区复兴路公司 已揽收"
-                  ></TransportCard>
+                  {orderData.map((value: any, index) => {
+                    return (
+                      <TransportCard
+                        style="take"
+                        key={index}
+                        state={value.order_status}
+                        orderId={value.order_id}
+                        mailMsg={
+                          value.mail_address[0] &&
+                          value.mail_address[0].location
+                        }
+                        receiveMsg={
+                          value.receive_address[0] &&
+                          value.receive_address[0].location
+                        }
+                      ></TransportCard>
+                    );
+                  })}
                 </view>
               </ScrollView>
             </TabPanel>
-            <TabPanel>TabContent 1</TabPanel>
+            <TabPanel>
+              <ScrollView scrollY scrollWithAnimation scrollTop={0}>
+                <view className="transportCardList">
+                  {tokenData.map((value: any, index) => {
+                    return (
+                      <TransportCard
+                        style="token"
+                        key={index}
+                        state={value.order_status}
+                        orderId={value.order_id}
+                        mailMsg={
+                          value.mail_address[0] &&
+                          value.mail_address[0].location
+                        }
+                        receiveMsg={
+                          value.receive_address[0] &&
+                          value.receive_address[0].location
+                        }
+                      ></TransportCard>
+                    );
+                  })}
+                </view>
+              </ScrollView>
+            </TabPanel>
           </TabPanels>
         </Tabs>
       </view>

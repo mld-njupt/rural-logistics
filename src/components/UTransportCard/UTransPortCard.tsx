@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import Taro from "@tarojs/taro";
 import { untake_order_store, token_order_store } from "../../store/order";
 import { takeOrder, confirmOrder } from "../../api/order";
-import "./TransportCard.scss";
+import "./UTransportCard.scss";
 
 enum status {
   "待接单" = 0,
