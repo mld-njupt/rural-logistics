@@ -37,7 +37,6 @@ const order = async (sendId, collectId) => {
       receive_address_id: collectId,
     },
     method: "POST",
-    success: function (res) {},
   });
 };
 //骑手查看订单
@@ -69,7 +68,6 @@ const takeOrder = async (orderId) => {
       order_id: orderId,
     },
     method: "POST",
-    success: function (res) {},
   });
 };
 //骑手确认送达
@@ -86,10 +84,9 @@ const confirmOrder = async (orderId) => {
     data: {
       //测试
       user_id: open_id.data || null,
-      orderId,
+      order_id: orderId,
     },
-    method: "PUT",
-    success: function (res) {},
+    method: "POST",
   });
 };
 //用户撤销订单
@@ -106,10 +103,33 @@ const deleteOrder = async (orderId) => {
     data: {
       //测试
       user_id: open_id.data || null,
-      orderId,
+      order_id: orderId,
     },
-    method: "PUT",
-    success: function (res) {},
+    method: "POST",
   });
 };
-export { order, released_order, takeOrder, confirmOrder, deleteOrder };
+//用户获取订单
+const userOrder = async (status?) => {
+  let open_id;
+  try {
+    open_id = await Taro.getStorage({
+      key: "open_id",
+    });
+  } catch {}
+  return Taro.request({
+    url: "http://10.160.181.146:8888/user-order",
+    data: {
+      user_id: open_id.data,
+      status,
+    },
+    method: "GET",
+  });
+};
+export {
+  order,
+  released_order,
+  takeOrder,
+  confirmOrder,
+  deleteOrder,
+  userOrder,
+};

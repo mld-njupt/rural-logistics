@@ -18,7 +18,7 @@ const Reruit = () => {
       <Header title="招聘中心"></Header>
       <view className="recruitContainer">
         <Tabs defaultIndex={0}>
-          <TabList>
+          <TabList onTabClick>
             <Tab>附近工作</Tab>
             <Tab>热门简职</Tab>
             <Tab>最新发布</Tab>

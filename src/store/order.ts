@@ -8,3 +8,7 @@ export const token_order_store = atom({
   key: "tokenOrder",
   default: [],
 });
+export const user_order_store = atom({
+  key: "userOrder",
+  default: [],
+});

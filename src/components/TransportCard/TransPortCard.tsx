@@ -1,4 +1,5 @@
 /* eslint-disable jsx-quotes */
+import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import Taro from "@tarojs/taro";
 import { untake_order_store, token_order_store } from "../../store/order";
@@ -14,6 +15,9 @@ enum status {
 const TransportCard = ({ state, mailMsg, receiveMsg, orderId, style }) => {
   const [orderData, setOrderData] = useRecoilState(untake_order_store);
   const [tokenData, setTokenData] = useRecoilState(token_order_store);
+  // useEffect(() => {
+  //   console.log(orderData);
+  // }, [orderData]);
   const catchOrder = () => {
     Taro.showModal({
       title: "提示",

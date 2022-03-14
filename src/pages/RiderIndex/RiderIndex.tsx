@@ -18,20 +18,25 @@ import "./RiderIndex.scss";
 const RiderIndex = () => {
   const [orderData, setOrderData] = useRecoilState(untake_order_store);
   const [tokenData, setTokenData] = useRecoilState(token_order_store);
+  const [showNo, setShowNo] = useState(0);
   useEffect(() => {
-    released_order("1", "5", 0).then((res) => {
+    released_order("1", "10", 0).then((res) => {
       setOrderData(res.data.data);
     });
-    released_order("1", "5", 1).then((res) => {
+    released_order("1", "10", 1).then((res) => {
       setTokenData(res.data.data);
     });
-  }, []);
+  }, [showNo]);
+  const handleClickTab = (e) => {
+    console.log(e);
+    setShowNo(e);
+  };
   return (
     <view>
       <Header title=""></Header>
       <view className="indexContainer">
         <Tabs defaultIndex={0}>
-          <TabList>
+          <TabList onTabClick={handleClickTab}>
             <Tab>待接订单</Tab>
             <Tab>已接订单</Tab>
           </TabList>

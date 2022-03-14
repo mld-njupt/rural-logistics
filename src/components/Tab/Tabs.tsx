@@ -1,5 +1,5 @@
 /* eslint-disable jsx-quotes */
-import React, { useState, useMemo, useContext } from "react";
+import React, { useState, useMemo, useContext, useEffect } from "react";
 import "./Tabs.scss";
 
 interface contextInterface {
@@ -26,13 +26,20 @@ export const Tabs = ({ children, defaultIndex }) => {
     </view>
   );
 };
-export const TabList = ({ children }) => {
+export const TabList = ({ children, onTabClick }) => {
   const context = useContext(TabsContext);
+  useEffect(() => {
+    console.log(context.selectedIndex);
+    console.log(onTabClick);
+    onTabClick(context.selectedIndex);
+  }, [context.selectedIndex]);
   return (
     <view className="tablist">
       {React.Children.map(children, (child, index) => {
         return React.cloneElement(child, {
-          onClick: () => context.setSelectedIndex(index),
+          onClick: () => {
+            context.setSelectedIndex(index);
+          },
           isSelected: index === context.selectedIndex,
         });
       })}
