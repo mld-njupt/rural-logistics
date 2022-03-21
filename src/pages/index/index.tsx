@@ -37,6 +37,26 @@ const Index = () => {
     <view>
       <Header title="首页"></Header>
       <view className="indexContainer">
+        <view className="tags-wrap">
+          <view className="collect-tag tag-item">
+            <view className="item-inner">
+              <view className="item-header">
+                <view className="item-title">取件</view>
+                <view className="item-right"></view>
+              </view>
+              <view className="item-text">查看已送达的包裹哟~</view>
+            </view>
+          </view>
+          <view className="send-tag tag-item">
+            <view className="item-inner">
+              <view className="item-header">
+                <view className="item-title">寄件</view>
+                <view className="item-right"></view>
+              </view>
+              <view className="item-text">快速寄件，先人一步</view>
+            </view>
+          </view>
+        </view>
         <Tabs defaultIndex={0}>
           <TabList
             onTabClick={(e) => {

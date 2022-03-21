@@ -1,9 +1,9 @@
 .Header {
   width: 750rpx;
-  background-image: linear-gradient(#3cc2bb, #3cc2bb),
-    linear-gradient(#3cc2bb, #3cc2bb);
+  // background-image: linear-gradient(#3cc2bb, #3cc2bb),
+  //   linear-gradient(#3cc2bb, #3cc2bb);
   background-blend-mode: normal, normal;
-  box-shadow: 0rpx 0rpx 16rpx 0rpx #cedaff;
+  box-shadow: 0rpx 0rpx 16rpx 0rpx #f8c3ce;
   border-radius: 0rpx 0rpx 16rpx 16rpx;
   display: block;
   box-sizing: border-box;
@@ -13,7 +13,7 @@
     position: relative;
     left: 175rpx;
     text-align: center;
-    color: #f7f8fd;
+    color: black;
     font-size: 36px;
   }
   .header-line {

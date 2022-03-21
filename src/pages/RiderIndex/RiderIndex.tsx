@@ -28,7 +28,6 @@ const RiderIndex = () => {
     });
   }, [showNo]);
   const handleClickTab = (e) => {
-    console.log(e);
     setShowNo(e);
   };
   return (

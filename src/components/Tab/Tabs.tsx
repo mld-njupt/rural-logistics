@@ -29,8 +29,6 @@ export const Tabs = ({ children, defaultIndex }) => {
 export const TabList = ({ children, onTabClick }) => {
   const context = useContext(TabsContext);
   useEffect(() => {
-    console.log(context.selectedIndex);
-    console.log(onTabClick);
     onTabClick(context.selectedIndex);
   }, [context.selectedIndex]);
   return (

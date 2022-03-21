@@ -1,9 +1,67 @@
 page {
   width: 750rpx;
   height: 100%;
-  background-color: #e3e9f1;
+  background-color: #f7f7fa;
 }
 .indexContainer {
+  .tags-wrap {
+    width: 700rpx;
+    margin: 0 auto;
+    margin-top: 40rpx;
+    display: flex;
+    justify-content: space-between;
+    .tag-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 340rpx;
+      height: 180px;
+      // box-shadow: -3px 7px 13px rgba(241, 247, 255, 1);
+      border-radius: 20px;
+      color: white;
+
+      // line-height: 116px;
+      // text-align: center;
+      .item-inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 280rpx;
+        height: 140px;
+        .item-header {
+          display: flex;
+          justify-content: space-between;
+          font-size: 36rpx;
+          .item-right {
+            width: 50rpx;
+            height: 50rpx;
+            background-image: url("../../assets/index_right.png");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+          }
+        }
+        .item-text {
+          font-size: 26rpx;
+        }
+      }
+    }
+    .collect-tag {
+      background: linear-gradient(
+        135deg,
+        rgba(231, 125, 125, 1) 0%,
+        rgba(231, 125, 125, 0.7098) 100%
+      );
+      box-shadow: 10px 10px 20px rgba(231, 125, 125, 0.3);
+    }
+    .send-tag {
+      background: linear-gradient(
+        135deg,
+        rgba(125, 136, 231, 1) 0%,
+        rgba(125, 136, 231, 0.7412) 100%
+      );
+      box-shadow: 10px 10px 20px rgba(125, 136, 231, 0.3);
+    }
+  }
   .transportCardList {
     width: 700rpx;
     margin: 0 auto;

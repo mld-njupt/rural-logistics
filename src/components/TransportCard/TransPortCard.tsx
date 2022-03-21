@@ -15,9 +15,9 @@ enum status {
 const TransportCard = ({ state, mailMsg, receiveMsg, orderId, style }) => {
   const [orderData, setOrderData] = useRecoilState(untake_order_store);
   const [tokenData, setTokenData] = useRecoilState(token_order_store);
-  // useEffect(() => {
-  //   console.log(orderData);
-  // }, [orderData]);
+  useEffect(() => {
+    console.log(tokenData);
+  }, [tokenData]);
   const catchOrder = () => {
     Taro.showModal({
       title: "提示",

@@ -8,8 +8,10 @@ import PeopleMsg from "../../components/PeopleMsg/PeopleMsg";
 import RLPicker from "../../components/RLPicker/RLPicker";
 import { goods_option, time_option } from "../../utils/selector_options";
 import { send_people_store, collect_people_store } from "../../store/people";
+import { user_order_store } from "../../store/order";
 import { address_store } from "../../store/address";
-import { order } from "../../api/order";
+import { order, userOrder } from "../../api/order";
+
 import { send_people, collect_people } from "../../utils/base64";
 import "./SendDetail.scss";
 
@@ -18,6 +20,7 @@ const SendDetail = () => {
   const [collectPeople, setCollectPeople] =
     useRecoilState(collect_people_store);
   const [addressId, setAddressId] = useRecoilState(address_store);
+  const [orderData, setOrderData] = useRecoilState(user_order_store);
   const handleCheckbox = (e) => {
     console.log(e);
   };
@@ -40,7 +43,12 @@ const SendDetail = () => {
   };
   const handleSubmit = () => {
     order(addressId.sendId, addressId.collectId).then((res) => {
-      console.log(res);
+      if (res.data.code) {
+        userOrder("0").then((orderes) => {
+          setOrderData(orderes.data.data);
+        });
+        Taro.switchTab({ url: "../index/index" });
+      }
     });
   };
   const {
@@ -126,11 +134,11 @@ const SendDetail = () => {
           </view>
         </view>
         <view className="dispose-item price-protection">
-          <view className="title">是否保价</view>
+          <view className="title">保价</view>
           <Checkbox
             onClick={handleCheckbox}
             value="选中"
-            color="#12d4db"
+            color="#ff5678"
             className="msg"
           ></Checkbox>
         </view>

@@ -6,15 +6,13 @@ import "./Login.scss";
 
 const Login = () => {
   const [selected, setSelected] = useState({
-    admin: false,
-    rider: false,
+    rider: true,
     customer: false,
   });
-  const handleSelect = (userType: "admin" | "rider" | "customer") => {
+  const handleSelect = (userType: "rider" | "customer") => {
     return () => {
       setSelected((prev) => {
         return {
-          admin: false,
           rider: false,
           customer: false,
           [userType]: !prev[userType],
@@ -22,7 +20,7 @@ const Login = () => {
       });
     };
   };
-  const { admin, rider, customer } = selected;
+  const { rider, customer } = selected;
   const handleSubmit = () => {
     const selectdOption = Object.entries(selected)
       .filter(([key, value]) => {
@@ -43,60 +41,97 @@ const Login = () => {
     getOpenId();
   }, []);
   return (
+    // <view className="login-wrap">
+    //   <view className="title" style={{ letterSpacing: "3px" }}>
+    //     请选择登录类型
+    //   </view>
+    //   <view className="options">
+    //     <view
+    //       className={admin ? "selected option" : "option"}
+    //       onClick={handleSelect("admin")}
+    //       style={
+    //         !admin
+    //           ? {
+    //               background: "#f98981",
+    //             }
+    //           : {
+    //               background: "#f53f3f",
+    //             }
+    //       }
+    //     >
+    //       管理员
+    //     </view>
+    //     <view
+    //       className={rider ? "selected option" : "option"}
+    //       onClick={handleSelect("rider")}
+    //       style={
+    //         !rider
+    //           ? {
+    //               background: "#4cd263",
+    //             }
+    //           : {
+    //               background: "#00b42a",
+    //             }
+    //       }
+    //     >
+    //       骑手
+    //     </view>
+    //     <view
+    //       className={customer ? "selected option" : "option"}
+    //       onClick={handleSelect("customer")}
+    //       style={
+    //         !customer
+    //           ? {
+    //               background: "#6aa1ff",
+    //             }
+    //           : {
+    //               background: "#165dff",
+    //             }
+    //       }
+    //     >
+    //       普通用户
+    //     </view>
+    //   </view>
+
+    //   <view className="login" onClick={handleSubmit}>
+    //     登录
+    //   </view>
+    // </view>
     <view className="login-wrap">
-      <view className="title" style={{ letterSpacing: "3px" }}>
-        请选择登录类型
-      </view>
-      <view className="options">
+      <view className="login-title"></view>
+      <view className="number">+86 182****7721</view>
+      <view className="button-wrap">
         <view
-          className={admin ? "selected option" : "option"}
-          onClick={handleSelect("admin")}
+          onClick={handleSelect("customer")}
           style={
-            !admin
-              ? {
-                  background: "#f98981",
-                }
+            customer
+              ? {}
               : {
-                  background: "#f53f3f",
+                  background: "#ff5678",
+                  color: "white",
                 }
           }
+          className="user-btn btn-item"
         >
-          管理员
+          用户
         </view>
         <view
-          className={rider ? "selected option" : "option"}
           onClick={handleSelect("rider")}
           style={
-            !rider
-              ? {
-                  background: "#4cd263",
-                }
+            rider
+              ? {}
               : {
-                  background: "#00b42a",
+                  background: "#ff5678",
+                  color: "white",
                 }
           }
+          className="rider-btn btn-item"
         >
           骑手
         </view>
-        <view
-          className={customer ? "selected option" : "option"}
-          onClick={handleSelect("customer")}
-          style={
-            !customer
-              ? {
-                  background: "#6aa1ff",
-                }
-              : {
-                  background: "#165dff",
-                }
-          }
-        >
-          普通用户
+        <view onClick={handleSubmit} className="submit">
+          登陆
         </view>
-      </view>
-
-      <view className="login" onClick={handleSubmit}>
-        登录
       </view>
     </view>
   );
