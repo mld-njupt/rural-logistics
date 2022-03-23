@@ -7,21 +7,25 @@
     display: flex;
     margin-left: 30rpx;
     .tab-list-item {
-      font-size: 30px;
-      color: #3cc2bb;
+      font-size: 24px;
+      // color: #3cc2bb;
       //   width: 140rpx;
-      margin: 20rpx;
+      padding: 20rpx;
+      margin: 20rpx 40rpx 20rpx 0;
       height: 30px;
-      line-height: 30px;
-      font-weight: bold;
+      border-radius: 20rpx;
+      // font-weight: bold;
       text-align: center;
       padding-bottom: 20px;
-      transition: all ease-in-out 0.2s;
+      // transition: all ease-in-out 0.2s;
+      background-color: white;
     }
+    
     .selected {
-      border-bottom: 7px solid #3cc2bb;
-
-      font-size: 36px;
+      // border-bottom: 7px solid #3cc2bb;
+      background-color: rgba($color: #ff5678, $alpha: .5);
+     color:white;
+      // font-size: 36px;
     }
   }
   .tabpanels {

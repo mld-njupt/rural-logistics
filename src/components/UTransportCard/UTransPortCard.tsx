@@ -33,25 +33,6 @@ const TransportCard = ({ state, mailMsg, receiveMsg, orderId, style }) => {
       },
     });
   };
-  // const tokenOrder = () => {
-  //   Taro.showModal({
-  //     title: "提示",
-  //     content: "确认送达？",
-  //     success: function (res) {
-  //       if (res.confirm) {
-  //         confirmOrder(orderId).then((takeRes) => {
-  //           setTokenData((prev) => {
-  //             return prev.filter((value: any) => {
-  //               return value.order_id != orderId;
-  //             });
-  //           });
-  //         });
-  //       } else if (res.cancel) {
-  //         console.log("用户点击取消");
-  //       }
-  //     },
-  //   });
-  // };
   return (
     <view className="transportCardContainer">
       <view className="image"></view>

@@ -1,14 +1,18 @@
 /* eslint-disable jsx-quotes */
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Taro from "@tarojs/taro";
+import { useRecoilState } from "recoil";
+import { user_info_store } from "../../store/user";
 import { getOpenId, login } from "../../api/user";
 import "./Login.scss";
 
 const Login = () => {
+  const [userInfo,setUserInfo]=useRecoilState(user_info_store)
   const [selected, setSelected] = useState({
-    rider: true,
-    customer: false,
+    rider: false,
+    customer: true,
   });
+  
   const handleSelect = (userType: "rider" | "customer") => {
     return () => {
       setSelected((prev) => {
@@ -22,6 +26,7 @@ const Login = () => {
   };
   const { rider, customer } = selected;
   const handleSubmit = () => {
+    getUserInfo()
     const selectdOption = Object.entries(selected)
       .filter(([key, value]) => {
         return value;
@@ -37,66 +42,19 @@ const Login = () => {
       login(selectdOption[0]);
     }
   };
+  const getUserInfo=useCallback(()=>{
+    Taro.getUserProfile({
+      desc: '获取用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+        setUserInfo(res.userInfo )
+      }
+    })
+  },[])
   useEffect(() => {
     getOpenId();
   }, []);
   return (
-    // <view className="login-wrap">
-    //   <view className="title" style={{ letterSpacing: "3px" }}>
-    //     请选择登录类型
-    //   </view>
-    //   <view className="options">
-    //     <view
-    //       className={admin ? "selected option" : "option"}
-    //       onClick={handleSelect("admin")}
-    //       style={
-    //         !admin
-    //           ? {
-    //               background: "#f98981",
-    //             }
-    //           : {
-    //               background: "#f53f3f",
-    //             }
-    //       }
-    //     >
-    //       管理员
-    //     </view>
-    //     <view
-    //       className={rider ? "selected option" : "option"}
-    //       onClick={handleSelect("rider")}
-    //       style={
-    //         !rider
-    //           ? {
-    //               background: "#4cd263",
-    //             }
-    //           : {
-    //               background: "#00b42a",
-    //             }
-    //       }
-    //     >
-    //       骑手
-    //     </view>
-    //     <view
-    //       className={customer ? "selected option" : "option"}
-    //       onClick={handleSelect("customer")}
-    //       style={
-    //         !customer
-    //           ? {
-    //               background: "#6aa1ff",
-    //             }
-    //           : {
-    //               background: "#165dff",
-    //             }
-    //       }
-    //     >
-    //       普通用户
-    //     </view>
-    //   </view>
-
-    //   <view className="login" onClick={handleSubmit}>
-    //     登录
-    //   </view>
-    // </view>
     <view className="login-wrap">
       <view className="login-title"></view>
       <view className="number">+86 182****7721</view>
@@ -105,11 +63,11 @@ const Login = () => {
           onClick={handleSelect("customer")}
           style={
             customer
-              ? {}
-              : {
-                  background: "#ff5678",
-                  color: "white",
-                }
+              ? {
+                background: "#ff5678",
+                color: "white"
+              }
+              : {}
           }
           className="user-btn btn-item"
         >
@@ -119,11 +77,11 @@ const Login = () => {
           onClick={handleSelect("rider")}
           style={
             rider
-              ? {}
-              : {
-                  background: "#ff5678",
-                  color: "white",
-                }
+              ? {
+                background: "#ff5678",
+                color: "white",
+              }
+              : {}
           }
           className="rider-btn btn-item"
         >
