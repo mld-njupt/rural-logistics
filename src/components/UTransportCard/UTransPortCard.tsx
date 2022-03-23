@@ -11,10 +11,10 @@ enum status {
   "已送达" = 2,
   "已撤销" = 3,
 }
-const TransportCard = ({ state, mailMsg, receiveMsg, orderId, style }) => {
+const UDTransportCard = ({ state, mailMsg, receiveMsg, orderId, style }) => {
   const [orderData, setOrderData] = useRecoilState(user_order_store);
   // const [tokenData, setTokenData] = useRecoilState(token_order_store);
-  const catchOrder = () => {
+  const cancelOrder = () => {
     Taro.showModal({
       title: "提示",
       content: "确认撤销？",
@@ -35,16 +35,23 @@ const TransportCard = ({ state, mailMsg, receiveMsg, orderId, style }) => {
   };
   return (
     <view className="transportCardContainer">
-      <view className="image"></view>
+      <view className="head-wrap">
+        <view className="order-wrap">
+          <view className="order-title"></view>
+          <view className="order-id"></view>
+        </view>
+        <view className="state-btn"></view>
+        <view className="order"></view>
+      </view>
       <view className="msg">
         <view className="state">{status[state]}</view>
         <view className="mailMsg">{mailMsg}</view>
         <view className="receiveMsg">{receiveMsg}</view>
       </view>
-      <view className="order" onClick={style == "take" ? catchOrder : () => {}}>
+      {/* <view className="order" onClick={style == "take" ? cancelOrder : () => {}}>
         {style == "take" ? "撤销" : ""}
-      </view>
+      </view> */}
     </view>
   );
 };
-export default TransportCard;
+export default UDTransportCard;

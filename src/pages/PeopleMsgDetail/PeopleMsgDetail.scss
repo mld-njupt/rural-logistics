@@ -1,7 +1,7 @@
 page {
   width: 750rpx;
   height: 100%;
-  background-color: #e3e9f1;
+  background-color: #f7f7fa;
   //   display: flex;
   //   justify-content: center;
   //   align-items: center;
@@ -62,7 +62,7 @@ page {
           button {
             border: none;
             width: 200rpx;
-            color: #3cc2bb;
+            color: #ff5678;
             font-size: 26px;
             height: 100%;
             line-height: 80px;
@@ -86,7 +86,7 @@ page {
   .confirm {
     // margin-top: -180px;
     margin-top: 300rpx;
-    border-radius: 15px;
+    border-radius: 80rpx;
     width: 700rpx;
     color: white;
     font-size: 46px;
@@ -94,6 +94,6 @@ page {
     padding: 20px 0;
     height: 65px;
     line-height: 65px;
-    background: #3cc2bb;
+    background: #ff5678;
   }
 }
