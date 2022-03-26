@@ -1,11 +1,11 @@
 .recruitCardContainer {
   background-color: whitesmoke;
-  width: 650rpx;
+  width: 700rpx;
   //   height: 160px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0px 0px 20px 0px rgba(101, 247, 247, 0.35);
+  box-shadow: 0px 0px 16px 0px rgba($color: #ff5678, $alpha: 0.25);
   margin: 20px 0px 20px 0px;
   border-radius: 15px;
   .card-line {
@@ -21,7 +21,7 @@
       font-size: 40px;
     }
     .salary {
-      color: #3cc2bb;
+      color: #ff5678;
       font-weight: bold;
     }
     .from {
@@ -34,11 +34,11 @@
       color: #8a8a8a;
     }
     .link {
-      border-radius: 20px;
+      border-radius: 30rpx;
       padding: 10px;
       text-align: center;
-      color: #3cc2bb;
-      background: rgba(101, 247, 247, 0.35);
+      color: white;
+      background: rgba($color: #ff5678, $alpha: 0.35);
     }
   }
 }

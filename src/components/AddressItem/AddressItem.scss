@@ -2,6 +2,8 @@
   width: 100%;
   height: 200px;
   position: relative;
+  border-bottom: 1px solid #ff5678;
+
   .show-wrap {
     z-index: 100;
     background-color: white;
@@ -32,8 +34,8 @@
           margin-left: 20px;
           width: 80px;
           height: 40px;
-          border: 1px solid #3cc2bb;
-          color: #3cc2bb;
+          border: 1px solid #ff5678;
+          color: #ff5678;
           border-radius: 20px;
           text-align: center;
           line-height: 40px;

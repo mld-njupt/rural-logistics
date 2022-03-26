@@ -1,6 +1,6 @@
 /* eslint-disable jsx-quotes */
 import { useState, useEffect } from "react";
-import Taro from "@tarojs/taro";
+import Taro, { navigateTo } from "@tarojs/taro";
 import { useRecoilState } from "recoil";
 import { ScrollView } from "@tarojs/components";
 import {
@@ -47,7 +47,14 @@ const Index = () => {
               <view className="item-text">查看已送达的包裹哟~</view>
             </view>
           </view>
-          <view className="send-tag tag-item">
+          <view
+            onClick={() => {
+              navigateTo({
+                url: "../SendDetail/SendDetail",
+              });
+            }}
+            className="send-tag tag-item"
+          >
             <view className="item-inner">
               <view className="item-header">
                 <view className="item-title">寄件</view>

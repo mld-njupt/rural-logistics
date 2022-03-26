@@ -32,7 +32,7 @@ const RiderIndex = () => {
   };
   return (
     <view>
-      <Header title=""></Header>
+      <Header title="首页"></Header>
       <view className="indexContainer">
         <Tabs defaultIndex={0}>
           <TabList onTabClick={handleClickTab}>

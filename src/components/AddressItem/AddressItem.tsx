@@ -75,7 +75,7 @@ const AddressItem = (props: address) => {
           style === "send"
             ? handleAddress("sendId")()
             : handleAddress("collectId")();
-          Taro.switchTab({ url: "/pages/SendDetail/SendDetail" });
+          Taro.navigateTo({ url: "../SendDetail/SendDetail" });
         }}
         style={
           is_select

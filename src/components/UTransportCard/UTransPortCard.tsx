@@ -1,6 +1,7 @@
 /* eslint-disable jsx-quotes */
 import { useRecoilState } from "recoil";
 import Taro from "@tarojs/taro";
+import { View } from "@tarojs/components";
 import { user_order_store } from "../../store/order";
 import { deleteOrder } from "../../api/order";
 import "./UTransportCard.scss";
@@ -11,6 +12,12 @@ enum status {
   "已送达" = 2,
   "已撤销" = 3,
 }
+const colorJson = {
+  0: "#d84c4c",
+  1: "#5a6fb2",
+  2: "#17ae68",
+  3: "#999999",
+};
 const UDTransportCard = ({ state, mailMsg, receiveMsg, orderId, style }) => {
   const [orderData, setOrderData] = useRecoilState(user_order_store);
   // const [tokenData, setTokenData] = useRecoilState(token_order_store);
@@ -34,24 +41,38 @@ const UDTransportCard = ({ state, mailMsg, receiveMsg, orderId, style }) => {
     });
   };
   return (
-    <view className="transportCardContainer">
-      <view className="head-wrap">
-        <view className="order-wrap">
-          <view className="order-title"></view>
-          <view className="order-id"></view>
-        </view>
-        <view className="state-btn"></view>
-        <view className="order"></view>
-      </view>
-      <view className="msg">
-        <view className="state">{status[state]}</view>
-        <view className="mailMsg">{mailMsg}</view>
-        <view className="receiveMsg">{receiveMsg}</view>
-      </view>
-      {/* <view className="order" onClick={style == "take" ? cancelOrder : () => {}}>
-        {style == "take" ? "撤销" : ""}
-      </view> */}
-    </view>
+    <View className="detail-card">
+      <View className="card-head">
+        <View className="card-border"></View>
+        <View className="card-id">{orderId}</View>
+        <View
+          className="card-state"
+          style={{
+            // color: `${colorJson[state]}`,
+            color: "white",
+            backgroundColor: `${colorJson[state]}`,
+            border: `solid 1rpx ${colorJson[state]}`,
+          }}
+        >
+          {status[state]}
+        </View>
+        <View
+          className="card-operate"
+          onClick={style == "take" ? cancelOrder : () => {}}
+        >
+          {style == "take" ? "撤销" : ""}
+        </View>
+      </View>
+
+      <View className="card-item">
+        <View className="item-label">发送地</View>
+        <View className="item-content">{mailMsg}</View>
+      </View>
+      <View className="card-item">
+        <View className="item-label">接收地</View>
+        <View className="item-content">{receiveMsg}</View>
+      </View>
+    </View>
   );
 };
 export default UDTransportCard;

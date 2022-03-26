@@ -1,55 +1,112 @@
-.transportCardContainer {
+.detail-card {
   width: 700rpx;
-  display: flex;
-  align-items: center;
-  background-color: whitesmoke;
-  box-shadow: 0 0 20 rgba($color: #000000, $alpha: 0.1);
-  border-radius: 15rpx;
-  margin-bottom: 50px;
-  .image {
-    margin: 20rpx;
-    width: 150rpx;
-    height: 150rpx;
-    background-image: url("../../assets/goods.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100%, 100%;
-  }
-  .msg {
-    margin: 20rpx;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 16px 0px rgba($color: #ff5678, $alpha: 0.25);
+  border-radius: 16rpx;
+  margin: 30rpx;
+  padding-bottom: 13rpx;
+  margin-top: 45rpx;
+  margin-bottom: 8rpx;
+  transform: rotate(360deg);
+  .card-item {
+    height: 72rpx;
+    line-height: 72rpx;
+    margin-top: 15rpx;
+    font-size: 30rpx;
+    width: 600rpx;
+    margin-left: 45rpx;
+    padding-left: 18rpx;
+    padding-right: 18rpx;
+    border-bottom: 2rpx solid #eeeeee;
+    box-sizing: border-box;
+    margin-bottom: 10rpx;
     display: flex;
-    flex-direction: column;
-    width: 380rpx;
-    .state {
-      width: 380rpx;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      font-size: 36rpx;
-      padding: 10px 0;
+    align-items: center;
+    .item-label {
+      width: 140rpx;
+      height: 72rpx;
+      line-height: 72rpx;
+      width: 210rpx;
+      text-align: justify;
+      text-align-last: justify;
+      text-justify: inter-ideograph;
     }
-    .mailMsg {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      width: 380rpx;
-      font-size: 30rpx;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+    .item-label::after {
+      display: inline-block;
+      content: "";
+      width: 100%;
+      height: 0;
+      visibility: hidden;
     }
-    .transportMsg {
+    .item-content {
+      margin-left: 44rpx;
+      width: 340rpx;
+      display: inline-block;
+      white-space: nowrap;
       overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      width: 380rpx;
-      font-size: 30rpx;
-      white-space: nowrap;
       text-overflow: ellipsis;
     }
   }
-  .order {
-    color: #3cc2bb;
-    margin: 10px 0;
-    height: 150px;
+  .card-head {
+    width: 100%;
+    height: 80rpx;
+    display: flex;
+    // justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eeeeee;
+    transform: rotate(360deg);
+    .card-border {
+      width: 5rpx;
+      height: 46rpx;
+      background-color: #ff5678;
+    }
+    .card-id {
+      width: 350rpx;
+      height: 36rpx;
+      font-family: HYYakuHei-DEW;
+      font-size: 30rpx;
+      font-weight: normal;
+      font-stretch: normal;
+      line-height: 36rpx;
+      letter-spacing: 0rpx;
+      color: #333333;
+      margin-left: 30rpx;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .card-state {
+      margin-left: -48rpx;
+      padding-left: 15rpx;
+      padding-right: 15rpx;
+      height: 36rpx;
+      border-radius: 20rpx;
+      font-family: HYYakuHei-DEW;
+      font-size: 25rpx;
+      font-weight: normal;
+      font-stretch: normal;
+      line-height: 36rpx;
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-left: 27rpx;
+      transform: rotate(360deg);
+    }
+    .card-operate {
+      position: absolute;
+      right: 30rpx;
+      height: 36rpx;
+      font-family: HYYakuHei-DEW;
+      font-size: 30rpx;
+      font-weight: normal;
+      font-stretch: normal;
+      color: #ff5678;
+      line-height: 36rpx;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      transform: rotate(360deg);
+    }
   }
 }
