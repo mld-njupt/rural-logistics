@@ -25,7 +25,8 @@ const TransportCard = ({ state, mailMsg, receiveMsg, orderId, style }) => {
   useEffect(() => {
     console.log(tokenData);
   }, [tokenData]);
-  const catchOrder = () => {
+  const catchOrder = (e) => {
+    e.stopPropagation();
     Taro.showModal({
       title: "提示",
       content: "确认接单？",
@@ -64,7 +65,14 @@ const TransportCard = ({ state, mailMsg, receiveMsg, orderId, style }) => {
     });
   };
   return (
-    <View className="detail-card">
+    <View
+      className="detail-card"
+      onClick={() => {
+        Taro.navigateTo({
+          url: `/pages/TransportDetail/TransportDetail?id=${orderId}`,
+        });
+      }}
+    >
       <View className="card-head">
         <View className="card-border"></View>
         <View className="card-id">{orderId}</View>

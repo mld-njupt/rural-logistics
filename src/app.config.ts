@@ -10,6 +10,7 @@ export default {
     "pages/AddressBook/AddressBook",
     "pages/ChangeAddress/ChangeAddress",
     "pages/RiderIndex/RiderIndex",
+    "pages/TransportDetail/TransportDetail",
   ],
   window: {
     backgroundTextStyle: "light",

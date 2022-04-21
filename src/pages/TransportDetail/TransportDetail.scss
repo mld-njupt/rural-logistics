@@ -1,0 +1,168 @@
+.ApplicationForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transform: rotate(360deg);
+  .card {
+    width: 690rpx;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 16px 0px rgba(231, 125, 125, 0.3);
+    border-radius: 16rpx;
+    margin: 30rpx;
+    padding-bottom: 13rpx;
+    margin-top: 45rpx;
+    margin-bottom: 0rpx;
+    .card-top {
+      width: 690rpx;
+      height: 85rpx;
+      line-height: 85rpx;
+      border-bottom: 3rpx solid #eeeeee;
+      .card-sign {
+        display: inline;
+      }
+      .card-title {
+        padding-left: 47rpx;
+        display: inline;
+        margin-top: 22rpx;
+        width: 690rpx;
+        height: 46rpx;
+        font-size: 36rpx;
+        border-left: 5rpx solid #ff5678;
+        font-weight: normal;
+        font-stretch: normal;
+        letter-spacing: 0rpx;
+        color: #333333;
+      }
+    }
+    .card-item {
+      height: 72rpx;
+      line-height: 72rpx;
+      margin-top: 15rpx;
+      font-size: 30rpx;
+      width: 600rpx;
+      margin-left: 45rpx;
+      padding-left: 18rpx;
+      padding-right: 18rpx;
+      border-bottom: 2rpx solid #eeeeee;
+      box-sizing: border-box;
+      margin-bottom: 10rpx;
+      display: flex;
+      align-items: center;
+      .item-label {
+        width: 180rpx;
+        height: 72rpx;
+        line-height: 72rpx;
+        // display: inline-block;
+        /* font-family: PingFang-SC-Medium; */
+        /* font-size: 28rpx; */
+        /* font-weight: normal; */
+        /* font-stretch: normal; */
+        /* letter-spacing: 0rpx; */
+        /* color: #333333; */
+        width: 210rpx;
+        text-align: justify;
+        /* -moz-text-align-last: justify; */
+        text-align-last: justify;
+        text-justify: inter-ideograph;
+      }
+      .item-label::after {
+        display: inline-block;
+        content: "";
+        width: 100%;
+        height: 0;
+        visibility: hidden;
+      }
+      .item-content {
+        margin-left: 44rpx;
+        width: 340rpx;
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+  .form-notice {
+    width: 690rpx;
+    margin-top: 45rpx;
+    text-align: center;
+    font-size: 26rpx;
+    font-weight: normal;
+    font-stretch: normal;
+    letter-spacing: 0rpx;
+    color: #333333;
+    height: 40rpx;
+    line-height: 40rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .form-promise {
+      width: 35rpx;
+      display: inline-block;
+      height: 35rpx;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      margin-right: 10rpx;
+    }
+  }
+  .form-submit {
+    margin-top: 32rpx;
+    width: 350rpx;
+    height: 72rpx;
+    line-height: 72rpx;
+    background-color: #ff5678;
+    box-shadow: 0rpx 0rpx 0rpx 0rpx rgba(231, 125, 125, 0.3),
+      inset -1rpx 0rpx 0rpx 0rpx #e4e4e4;
+    border-radius: 21rpx;
+    border: solid 2rpx #cfefb6;
+    text-align: center;
+    color: white;
+    text-align: justify;
+    text-align-last: justify;
+    text-justify: inter-ideograph;
+    padding-left: 100rpx;
+    padding-right: 100rpx;
+    box-sizing: border-box;
+    margin-bottom: 200rpx;
+    font-size: 36rpx;
+    justify-content: space-between;
+  }
+  .form-submit::after {
+    display: inline-block;
+    content: "";
+    width: 100%;
+    height: 0;
+    visibility: hidden;
+  }
+  .form-approve {
+    margin-top: 50rpx;
+    display: block;
+    width: 590rpx;
+    height: 80rpx;
+    border-radius: 31rpx;
+    border: solid 2rpx #ff5678;
+    overflow: hidden;
+    font-size: 36rpx;
+    margin-bottom: 200rpx;
+    .approve-bottom {
+      width: 50%;
+      height: 80rpx;
+      font-size: 36rpx;
+      line-height: 80rpx;
+      text-align: center;
+      display: inline-block;
+      font-weight: normal;
+      font-stretch: normal;
+      letter-spacing: 16rpx;
+    }
+    .left {
+      color: #ff5678;
+    }
+    .right {
+      color: white;
+      background-color: #ff5678;
+    }
+  }
+}

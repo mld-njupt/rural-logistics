@@ -1,5 +1,5 @@
 .recruitCardContainer {
-  background-color: whitesmoke;
+  background-color: white;
   width: 700rpx;
   //   height: 160px;
   display: flex;
@@ -16,9 +16,10 @@
     .card-item {
       margin-left: 15px;
       margin-right: 15px;
+      font-size:28px
     }
     .title {
-      font-size: 40px;
+      font-size: 34px;
     }
     .salary {
       color: #ff5678;

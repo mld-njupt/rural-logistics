@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import Taro from "@tarojs/taro";
 import { View } from "@tarojs/components";
 import { user_order_store } from "../../store/order";
-import { deleteOrder } from "../../api/order";
+import { deleteOrder, oneOrder } from "../../api/order";
 import "./UTransportCard.scss";
 
 enum status {
@@ -21,7 +21,8 @@ const colorJson = {
 const UDTransportCard = ({ state, mailMsg, receiveMsg, orderId, style }) => {
   const [orderData, setOrderData] = useRecoilState(user_order_store);
   // const [tokenData, setTokenData] = useRecoilState(token_order_store);
-  const cancelOrder = () => {
+  const cancelOrder = (e) => {
+    e.stopPropagation();
     Taro.showModal({
       title: "提示",
       content: "确认撤销？",
@@ -41,7 +42,14 @@ const UDTransportCard = ({ state, mailMsg, receiveMsg, orderId, style }) => {
     });
   };
   return (
-    <View className="detail-card">
+    <View
+      className="detail-card"
+      onClick={() => {
+        Taro.navigateTo({
+          url: `/pages/TransportDetail/TransportDetail?id=${orderId}`,
+        });
+      }}
+    >
       <View className="card-head">
         <View className="card-border"></View>
         <View className="card-id">{orderId}</View>

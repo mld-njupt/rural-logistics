@@ -29,10 +29,17 @@ const Reruit = () => {
                 <view className="recruitCardList">
                   <RecruitCard
                     title="鼓楼区派件"
-                    address="栖霞区"
+                    address="鼓楼区区"
                     salary="10元"
                     name="王先生"
-                    from="栖霞区乡村小站"
+                    from="鼓楼区快递站"
+                  ></RecruitCard>
+                  <RecruitCard
+                    title="栖霞区派件"
+                    address="栖霞区"
+                    salary="15元"
+                    name="李先生"
+                    from="栖霞区快递站"
                   ></RecruitCard>
                 </view>
               </ScrollView>

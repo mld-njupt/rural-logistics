@@ -125,6 +125,16 @@ const userOrder = async (status?) => {
     method: "GET",
   });
 };
+//查看订单详细信息
+const oneOrder=(order_id:string)=>{
+  return Taro.request({
+    url: "http://10.160.181.146:8888/query-one-order",
+    data: {
+      order_id
+    },
+    method: "GET",
+  });
+}
 export {
   order,
   released_order,
@@ -132,4 +142,5 @@ export {
   confirmOrder,
   deleteOrder,
   userOrder,
+  oneOrder
 };

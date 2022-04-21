@@ -29,7 +29,7 @@ export const Tabs = ({ children, defaultIndex }) => {
 export const TabList = ({ children, onTabClick }) => {
   const context = useContext(TabsContext);
   useEffect(() => {
-    onTabClick(context.selectedIndex);
+     onTabClick(context.selectedIndex);
   }, [context.selectedIndex]);
   return (
     <view className="tablist">
